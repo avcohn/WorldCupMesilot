@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>מסילות 2026</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f7f3e8;
+  color:#1a1a1a;
+}
+main{
+  max-width:620px;
+  margin:auto;
+  padding:24px 16px 60px;
+}
+.hero{
+  text-align:center;
+}
+.hero img{
+  width:240px;
+  max-width:75%;
+}
+h1{
+  color:#16712b;
+  margin:10px 0;
+}
+.card{
+  background:white;
+  border:2px solid #e0d5b8;
+  border-radius:22px;
+  padding:22px;
+  margin-top:20px;
+  box-shadow:0 8px 28px rgba(0,0,0,.12);
+}
+.row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#e8f5e9;
+  border-radius:12px;
+  padding:10px;
+  margin-bottom:10px;
+}
+.row span{
+  width:85px;
+  font-weight:bold;
+}
+input{
+  flex:1;
+  padding:12px;
+  border-radius:9px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+button{
+  width:100%;
+  margin-top:16px;
+  padding:15px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#16712b,#2db84a);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.note{
+  text-align:center;
+  margin-top:10px;
+  color:#666;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+}
+th{
+  background:#16712b;
+  color:white;
+  padding:10px;
+}
+td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:center;
+}
+.loader{
+  text-align:center;
+  color:#777;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+  <div class="hero">
+    <img src="logo.png" alt="מסילות 2026">
+    <h1>מסילות 2026</h1>
+    <p>נחשו את ארבעת המקומות הראשונים במונדיאל</p>
+  </div>
+
+  <div class="card">
+    <h2>🏆 הניחוש שלי</h2>
+
+    <form id="guessForm"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSdPJNZpgpypxSnYASzmfBbi1q0_2nZ_4bz-pFZlQPNDf0HFyQ/formResponse"
+      method="POST"
+      target="hiddenFrame">
+
+      <div class="row">
+        <span>🥇 מקום 1</span>
+        <input name="entry.2032410557" id="place1" required placeholder="שם המדינה">
+      </div>
+
+      <div class="row">
+        <span>🥈 מקום 2</span>
+        <input name="entry.877923770" id="place2" required placeholder="שם המדינה">
+      </div>
+
+      <div class="row">
+        <span>🥉 מקום 3</span>
+        <input name="entry.1758586108" id="place3" required placeholder="שם המדינה">
+      </div>
+
+      <div class="row">
+        <span>🎗️ מקום 4</span>
+        <input name="entry.527232011" id="place4" required placeholder="שם המדינה">
+      </div>
+
+      <div class="row" style="background:#fff8df">
+        <span>👤 שם</span>
+        <input name="entry.344835533" id="name" required placeholder="השם שלך">
+      </div>
+
+      <button type="submit">⚽ שלח ניחוש</button>
+    </form>
+
+    <iframe name="hiddenFrame" style="display:none"></iframe>
+    <div class="note" id="message"></div>
+  </div>
+
+  <div class="card">
+    <h2>📋 הניחושים של כולם</h2>
+    <div class="loader" id="loader">טוען ניחושים...</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>🥇</th>
+          <th>🥈</th>
+          <th>🥉</th>
+          <th>🎗️</th>
+          <th>👤</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<script>
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQskURvygFDC5WwsrJeFPlVxJFl1AgSnBfs89a7Qq5VV0AQiFLvnqmKwp1IWONrGUySxE3PGaDUseid/pub?output=csv";
+
+const form = document.getElementById("guessForm");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", function(){
+  message.innerHTML = "✅ הניחוש נשלח! הטבלה תתעדכן עוד כמה שניות...";
+  setTimeout(() => {
+    form.reset();
+    loadResults();
+  }, 3500);
+});
+
+function parseCSV(text){
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let insideQuotes = false;
+
+  for(let i = 0; i < text.length; i++){
+    const char = text[i];
+    const next = text[i + 1];
+
+    if(char === '"' && insideQuotes && next === '"'){
+      cell += '"';
+      i++;
+    } else if(char === '"'){
+      insideQuotes = !insideQuotes;
+    } else if(char === "," && !insideQuotes){
+      row.push(cell);
+      cell = "";
+    } else if((char === "\n" || char === "\r") && !insideQuotes){
+      if(cell || row.length){
+        row.push(cell);
+        rows.push(row);
+        row = [];
+        cell = "";
+      }
+    } else {
+      cell += char;
+    }
+  }
+
+  if(cell || row.length){
+    row.push(cell);
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+async function loadResults(){
+  const tbody = document.getElementById("results");
+  const loader = document.getElementById("loader");
+
+  try{
+    const res = await fetch(CSV_URL + "&t=" + Date.now());
+    const text = await res.text();
+    const rows = parseCSV(text).slice(1);
+
+    tbody.innerHTML = "";
+
+    rows.reverse().forEach(row => {
+      if(row.length < 6) return;
+
+      const place1 = row[1] || "";
+      const place2 = row[2] || "";
+      const place3 = row[3] || "";
+      const place4 = row[4] || "";
+      const name   = row[5] || "";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${escapeHTML(place1)}</td>
+        <td>${escapeHTML(place2)}</td>
+        <td>${escapeHTML(place3)}</td>
+        <td>${escapeHTML(place4)}</td>
+        <td><strong>${escapeHTML(name)}</strong></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    loader.innerHTML = rows.length ? "" : "עדיין אין ניחושים";
+  } catch(e){
+    loader.innerHTML = "לא הצלחתי לטעון את הטבלה";
+  }
+}
+
+function escapeHTML(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+}
+
+loadResults();
+setInterval(loadResults, 15000);
+</script>
+
+</body>
+</html>
