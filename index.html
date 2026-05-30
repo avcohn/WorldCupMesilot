@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>מסילות 2026 – ניחוש המונדיאל</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:#4aa3df; --gold-lt:#bfe6ff; --gold-pale:#f3fbff;
+      --blue:#2d9cdb; --blue-lt:#64bff4; --blue-pale:#eef9ff;
+      --blue-mid:#8ed8ff; --blue-bg:#f5fbff; --blue-border:#b7e5ff;
+      --red:#2f80c7;
+      --bg:#f4fbff;
+      --card:#ffffff;
+      --text:#0d1b2a; --muted:#4a6080;
+      --border:#b0cfe8;
+      --radius:18px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:linear-gradient(160deg,#f7fcff 0%,#eaf7ff 48%,#dff2ff 100%);
+      background-attachment:fixed;
+      color:var(--text);
+      font-family:'Heebo',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* subtle wave pattern */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background:
+        radial-gradient(ellipse 70% 40% at 10% 20%, rgba(30,136,229,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(21,101,192,.1) 0%, transparent 60%),
+        repeating-linear-gradient(135deg,
+          rgba(66,165,245,.04) 0,rgba(66,165,245,.04) 1px,
+          transparent 1px,transparent 28px);
+      pointer-events:none;z-index:0;
+    }
+
+    /* ── LAYOUT ── */
+    main{position:relative;z-index:1;max-width:580px;margin:0 auto;padding:0 1rem 5rem}
+
+    /* ── HERO ── */
+    .hero{text-align:center;padding:2.2rem 0 0}
+    .hero img{
+      width:min(240px,62vw);
+      filter:drop-shadow(0 10px 28px rgba(21,101,192,.3));
+      animation:floatLogo 3.5s ease-in-out infinite;
+    }
+    @keyframes floatLogo{
+      0%,100%{transform:translateY(0) rotate(-1.2deg)}
+      50%{transform:translateY(-12px) rotate(1.2deg)}
+    }
+    .hero-tagline{
+      margin-top:.7rem;
+      font-size:1rem;font-weight:700;
+      color:var(--blue);letter-spacing:.03em;
+    }
+
+    /* ── STATS BANNER ── */
+    .stats-banner{
+      display:grid;grid-template-columns:1fr 1fr 1fr;
+      gap:.7rem;margin:1.4rem 0;
+    }
+    .stat-box{
+      background:var(--card);
+      border-radius:14px;
+      border:1.5px solid var(--blue-border);
+      padding:.9rem .6rem;
+      text-align:center;
+      box-shadow:0 2px 14px rgba(21,101,192,.1);
+    }
+    .stat-box .val{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.9rem;line-height:1;
+      color:var(--blue);
+    }
+    .stat-box.gold .val{color:var(--gold)}
+    .stat-box .lbl{
+      font-size:.68rem;font-weight:700;
+      color:var(--muted);margin-top:.2rem;letter-spacing:.04em;
+    }
+    .stat-box .deadline-timer{
+      font-size:.72rem;font-weight:800;
+      color:var(--red);margin-top:.25rem;
+    }
+
+    /* ── PRIZE BANNER ── */
+    .prize-banner{
+      background:linear-gradient(135deg,#77cfff 0%,#49b4ed 58%,#b7e5ff 100%);
+      border-radius:var(--radius);
+      padding:1.1rem 1.4rem;
+      margin-bottom:1.2rem;
+      color:#fff;
+      box-shadow:0 4px 22px rgba(45,156,219,.22);
+    }
+    .prize-banner h2{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.25rem;letter-spacing:.08em;
+      margin-bottom:.6rem;opacity:.95;
+    }
+    .prize-rows{display:flex;flex-direction:column;gap:.4rem}
+    .prize-row{
+      display:flex;align-items:flex-start;gap:.7rem;
+      background:rgba(255,255,255,.18);
+      border-radius:10px;padding:.55rem .8rem;
+    }
+    .prize-row .icon{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+    .prize-row .txt{font-size:.88rem;font-weight:700;line-height:1.4}
+    .prize-row .txt small{font-weight:500;opacity:.88;font-size:.78rem;display:block;margin-top:.1rem}
+
+    .rules-card{
+      background:rgba(255,255,255,.82);
+      border:1.5px solid var(--blue-border);
+      border-radius:16px;
+      padding:.9rem 1rem;
+      margin:-.2rem 0 1.2rem;
+      box-shadow:0 3px 18px rgba(45,156,219,.1);
+      color:var(--muted);
+      font-size:.86rem;line-height:1.55;
+    }
+    .rules-card strong{display:block;color:var(--blue);font-size:.95rem;margin-bottom:.15rem}
+
+    /* ── PAYBOX ── */
+    .paybox-wrap{text-align:center;margin-bottom:1.4rem}
+    .btn-paybox{
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:linear-gradient(135deg,#55b8ed,#2d9cdb);
+      color:#fff;text-decoration:none;
+      border-radius:14px;padding:.9rem 2.2rem;
+      font-family:'Heebo',sans-serif;
+      font-size:1.02rem;font-weight:800;
+      box-shadow:0 4px 22px rgba(45,156,219,.25);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn-paybox:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(45,156,219,.32)}
+    .btn-paybox:active{transform:none}
+    .btn-paybox .paybox-icon{
+      background:#fff;color:#2d9cdb;
+      border-radius:7px;padding:.15rem .45rem;
+      font-size:.75rem;font-weight:900;letter-spacing:.03em;
+    }
+    .paybox-note{
+      margin-top:.5rem;font-size:.75rem;
+      color:var(--muted);font-weight:600;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      border:2px solid var(--blue-border);
+      box-shadow:0 6px 32px rgba(21,101,192,.1);
+      padding:1.8rem 1.5rem;
+      position:relative;overflow:hidden;
+      margin-bottom:1.4rem;
+    }
+    .form-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:5px;
+      background:linear-gradient(90deg,var(--blue),var(--blue-mid),var(--blue));
+    }
+    .form-card-title{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.35rem;letter-spacing:.1em;
+      color:var(--blue);margin-bottom:.35rem;
+    }
+    .form-hint{
+      margin:0 0 1.15rem;
+      font-size:.82rem;line-height:1.55;font-weight:700;
+      color:var(--muted);
+      background:#f5fbff;
+      border:1px solid var(--blue-border);
+      border-radius:12px;
+      padding:.65rem .85rem;
+    }
+
+    /* ── PLACE ROWS ── */
+    .place-row{
+      display:flex;align-items:center;gap:.8rem;
+      padding:.65rem .75rem;
+      border-radius:12px;margin-bottom:.6rem;
+      background:var(--blue-pale);
+      border:1.5px solid #bbdefb;
+      transition:border-color .2s,box-shadow .2s,background .2s;
+    }
+    .place-row:focus-within{
+      background:#fff;
+      border-color:var(--blue-lt);
+      box-shadow:0 0 0 3px rgba(30,136,229,.15);
+    }
+    .medal-icon{font-size:1.6rem;flex-shrink:0;width:2rem;text-align:center}
+    .place-meta{flex-shrink:0;width:5.5rem}
+    .place-meta strong{display:block;font-size:.95rem;font-weight:900;line-height:1.1}
+    .place-meta span{font-size:.65rem;color:var(--muted);font-weight:600}
+    .country-input{
+      flex:1;min-width:0;
+      background:#fff;
+      border:1.5px solid #b0c4d8;
+      border-radius:9px;
+      color:var(--text);
+      font-family:'Heebo',sans-serif;
+      font-size:.95rem;font-weight:700;
+      padding:.5rem .75rem;
+      direction:rtl;outline:none;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .country-input::placeholder{color:#a8bdd0;font-weight:400}
+    .country-input:focus{border-color:var(--blue-lt);box-shadow:0 0 0 3px rgba(30,136,229,.12)}
+
+    /* ── DIVIDER ── */
+    .divider{
+      display:flex;align-items:center;gap:.7rem;
+      margin:1.2rem 0 1rem;
+      color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.05em;
+    }
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--blue-border)}
+
+    /* ── NAME ROW ── */
+    .name-row{
+      display:flex;align-items:center;gap:.8rem;
+      background:var(--gold-pale);
+      border:1.5px solid var(--blue-border);
+      border-radius:12px;padding:.65rem .75rem;
+      transition:border-color .2s;
+    }
+    .name-row:focus-within{border-color:var(--blue-lt)}
+    .name-row label{font-size:.88rem;font-weight:800;color:var(--blue);flex-shrink:0;white-space:nowrap}
+    .name-input{
+      flex:1;min-width:0;background:#fff;
+      border:1.5px solid var(--blue-border);border-radius:9px;
+      color:var(--text);font-family:'Heebo',sans-serif;
+      font-size:.92rem;font-weight:700;
+      padding:.48rem .75rem;direction:rtl;outline:none;
+      transition:border-color .2s;
+    }
+    .name-input::placeholder{color:#c5b88a;font-weight:400}
+    .name-input:focus{border-color:var(--blue-lt)}
+
+    /* ── SUBMIT ── */
+    .btn-submit{
+      width:100%;margin-top:1.2rem;
+      background:linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%);
+      color:#fff;border:none;border-radius:14px;padding:1rem;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.45rem;letter-spacing:.12em;
+      cursor:pointer;
+      box-shadow:0 4px 20px rgba(21,101,192,.35);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn-submit:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(45,156,219,.32)}
+    .btn-submit:disabled{opacity:.65;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn-submit:active{transform:none}
+
+    /* ── TOAST ── */
+    .toast{
+      position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);
+      background:#0d1b2a;color:#fff;
+      border-radius:12px;padding:.75rem 1.4rem;
+      font-size:.9rem;font-weight:700;
+      box-shadow:0 6px 24px rgba(0,0,0,.25);
+      opacity:0;transition:transform .35s,opacity .35s;
+      pointer-events:none;z-index:1000;white-space:nowrap;
+    }
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+    /* ── SUMMARY ── */
+    #summary{display:none;margin-top:.5rem}
+    #summary.visible{display:block}
+    .summary-title{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.4rem;letter-spacing:.1em;
+      color:var(--blue);margin-bottom:.9rem;
+      display:flex;align-items:center;gap:.5rem;
+    }
+    .summary-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--blue-mid),transparent)}
+    .table-wrap{
+      background:var(--card);border-radius:16px;
+      border:2px solid var(--blue-border);
+      box-shadow:0 4px 20px rgba(21,101,192,.1);
+      overflow-x:auto;
+      animation:popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn{
+      from{opacity:0;transform:scale(.95) translateY(12px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
+    }
+    table{width:100%;border-collapse:collapse;direction:rtl;min-width:360px}
+    thead tr{background:linear-gradient(90deg,#59bdec,#8ed8ff)}
+    thead th{
+      padding:.8rem .9rem;
+      font-family:'Heebo',sans-serif;font-size:.8rem;font-weight:800;
+      letter-spacing:.04em;color:#fff;text-align:right;white-space:nowrap;
+    }
+    thead th:last-child{color:#ffffff}
+    tbody tr{transition:background .12s}
+    tbody tr:nth-child(odd){background:#fff}
+    tbody tr:nth-child(even){background:var(--blue-pale)}
+    tbody tr:hover{background:#f3fbff}
+    tbody td{
+      padding:.65rem .9rem;font-size:.88rem;font-weight:600;
+      border-bottom:1px solid #dce8f5;white-space:nowrap;
+    }
+    td.c1{color:#b8860b;font-weight:800}
+    td.c2{color:#546e7a;font-weight:800}
+    td.c3{color:#8d4e23;font-weight:800}
+    td.c4{color:#1565c0;font-weight:800}
+    td.nm{color:var(--blue-lt);font-weight:700;font-size:.8rem}
+
+    .action-row{display:flex;gap:.8rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap}
+    .btn-share{
+      display:inline-flex;align-items:center;gap:.4rem;
+      background:var(--blue-pale);border:1.5px solid var(--blue-border);
+      color:var(--blue);border-radius:9px;padding:.42rem 1.1rem;
+      font-family:'Heebo',sans-serif;font-size:.83rem;font-weight:700;
+      cursor:pointer;transition:background .15s,border-color .15s;
+    }
+    .btn-share:hover{background:#bbdefb;border-color:var(--blue-lt)}
+    .btn-reset{
+      display:inline-flex;align-items:center;gap:.4rem;
+      background:transparent;border:1.5px solid #ccc;color:#9ca3af;
+      border-radius:9px;padding:.42rem 1.1rem;
+      font-family:'Heebo',sans-serif;font-size:.83rem;font-weight:700;
+      cursor:pointer;transition:border-color .15s,color .15s;
+    }
+    .btn-reset:hover{border-color:var(--red);color:var(--red)}
+
+    /* ── CONFETTI ── */
+    .celebrate{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none}
+    .celebrate.show{display:block}
+    .cp{position:absolute;width:10px;height:10px;animation:fall 2s ease-in forwards}
+    @keyframes fall{
+      0%{transform:translateY(-40px) rotate(0deg);opacity:1}
+      100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+    }
+  </style>
+</head>
+<body>
+<div class="celebrate" id="celebrate"></div>
+<div class="toast" id="toast"></div>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="logo.png" alt="מסילות 2026"/>
+    <p class="hero-tagline">⚽ מי יגיע לפודיום? מלא את הניחוש שלך! ⚽</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-banner">
+    <div class="stat-box">
+      <div class="val" id="stat-players">0</div>
+      <div class="lbl">משתתפים</div>
+    </div>
+    <div class="stat-box gold">
+      <div class="val" id="stat-pot">0₪</div>
+      <div class="lbl">קופה כוללת</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">⏰</div>
+      <div class="lbl">ניחושים עד</div>
+      <div class="deadline-timer" id="countdown">10.6.2026</div>
+    </div>
+  </div>
+
+  <!-- PRIZE -->
+  <div class="prize-banner">
+    <h2>🏆 פרסים</h2>
+    <div class="prize-rows">
+      <div class="prize-row">
+        <span class="icon">🥇</span>
+        <div class="txt">מקום ראשון – זוכה בכל הקופה!
+          <small>מי שמנחש נכון את ארבעת המקומות הראשונים, או מגיע הכי קרוב לזה</small>
+        </div>
+      </div>
+      <div class="prize-row">
+        <span class="icon">🥈</span>
+        <div class="txt">מקום שני – החזר דמי השתתפות
+          <small>50₪ בחזרה לכיס</small>
+        </div>
+      </div>
+      <div class="prize-row">
+        <span class="icon">💰</span>
+        <div class="txt">דמי השתתפות – 50₪ בלבד</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- RULES -->
+  <div class="rules-card">
+    <strong>איך קובעים זוכה?</strong>
+    <span>פגיעה מדויקת בארבעת המקומות מנצחת. אם אין פגיעה מלאה — בודקים מי הכי קרוב לדירוג הסופי.</span>
+  </div>
+
+  <!-- PAYBOX -->
+  <div class="paybox-wrap">
+    <a class="btn-paybox" href="https://links.payboxapp.com/T9RLp1tpz3b" target="_blank" rel="noopener">
+      <span class="paybox-icon">PAY</span>
+      לתשלום דמי השתתפות – 50₪
+    </a>
+    <p class="paybox-note">⚡ תשלום מאובטח דרך Paybox • שלם ואז מלא ניחוש</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card">
+    <div class="form-card-title">✏️ הדירוג שלי</div>
+    <p class="form-hint">בחרו את 4 הנבחרות לפי הסדר. במקרה שאין פגיעה מלאה — הזוכה הוא מי שהכי קרוב לתוצאה.</p>
+
+    <div class="place-row">
+      <div class="medal-icon">🥇</div>
+      <div class="place-meta"><strong style="color:#b8860b">מקום 1</strong><span>אלוף העולם</span></div>
+      <input class="country-input" id="c1" type="text" placeholder="שם המדינה" maxlength="30"/>
+    </div>
+    <div class="place-row">
+      <div class="medal-icon">🥈</div>
+      <div class="place-meta"><strong style="color:#546e7a">מקום 2</strong><span>סגן אלוף</span></div>
+      <input class="country-input" id="c2" type="text" placeholder="שם המדינה" maxlength="30"/>
+    </div>
+    <div class="place-row">
+      <div class="medal-icon">🥉</div>
+      <div class="place-meta"><strong style="color:#8d4e23">מקום 3</strong><span>מקום שלישי</span></div>
+      <input class="country-input" id="c3" type="text" placeholder="שם המדינה" maxlength="30"/>
+    </div>
+    <div class="place-row">
+      <div class="medal-icon">🎗️</div>
+      <div class="place-meta"><strong style="color:#1565c0">מקום 4</strong><span>חצי גמר</span></div>
+      <input class="country-input" id="c4" type="text" placeholder="שם המדינה" maxlength="30"/>
+    </div>
+
+    <div class="divider">✦ פרטי המנחש ✦</div>
+
+    <div class="name-row">
+      <label>👤 שמך:</label>
+      <input class="name-input" id="guesser" type="text" placeholder="כתוב את שמך כאן" maxlength="30"/>
+    </div>
+
+    <button class="btn-submit" onclick="submitPick()">⚽ שלח ניחוש!</button>
+  </div>
+
+  <!-- SUMMARY -->
+  <div id="summary">
+    <div class="summary-title">📋 טבלת ניחושים</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>🥇 מקום 1</th>
+          <th>🥈 מקום 2</th>
+          <th>🥉 מקום 3</th>
+          <th>🎗️ מקום 4</th>
+          <th>👤 מנחש</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="action-row">
+      <button class="btn-share" onclick="shareLink()">🔗 שתף קישור לחברים</button>
+      <button class="btn-reset" onclick="resetAll()">🗑️ נקה הכל</button>
+    </div>
+  </div>
+</main>
+
+<script>
+var KEY='massilot2026';
+var ENTRY_FEE=50;
+var DEADLINE=new Date('2026-06-10T23:59:59');
+var CONF=['#42a5f5','#1565c0','#f5c842','#64b5f6','#fff','#1e88e5','#90caf9','#ffd54f'];
+
+function getPicks(){try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return[];}}
+function savePicks(a){localStorage.setItem(KEY,JSON.stringify(a));}
+
+function updateStats(){
+  var picks=getPicks();var n=picks.length;
+  document.getElementById('stat-players').textContent=n;
+  document.getElementById('stat-pot').textContent=(n*ENTRY_FEE).toLocaleString('he-IL')+'₪';
+}
+
+function updateCountdown(){
+  var now=new Date();var diff=DEADLINE-now;
+  var el=document.getElementById('countdown');
+  if(diff<=0){el.textContent='הסתיים';document.querySelector('.btn-submit').disabled=true;document.querySelector('.btn-submit').textContent='⛔ הניחושים הסתיימו';return;}
+  var d=Math.floor(diff/864e5);
+  var h=Math.floor((diff%864e5)/36e5);
+  var m=Math.floor((diff%36e5)/6e4);
+  if(d>0){el.textContent=d+'י '+h+'ש\''}
+  else if(h>0){el.textContent=h+'ש\' '+m+'ד\''}
+  else{el.textContent=m+' דקות'}
+}
+
+function isDeadlinePassed(){return new Date()>DEADLINE;}
+
+function submitPick(){
+  if(isDeadlinePassed()){showToast('⛔ זמן הניחושים הסתיים ב-10.6.2026');return;}
+  var countries=[1,2,3,4].map(function(i){return document.getElementById('c'+i).value.trim();});
+  var name=document.getElementById('guesser').value.trim();
+  if(countries.some(function(c){return!c;})){showToast('אנא מלא את כל 4 המקומות 🌍');return;}
+  var normalized=countries.map(function(c){return c.toLowerCase();});
+  if(new Set(normalized).size!==normalized.length){showToast('אי אפשר לבחור אותה מדינה פעמיים ⚽');return;}
+  if(!name){showToast('אנא כתוב את שמך 👤');return;}
+  var picks=getPicks();picks.push({name:name,countries:countries});savePicks(picks);
+  [1,2,3,4].forEach(function(i){document.getElementById('c'+i).value='';});
+  document.getElementById('guesser').value='';
+  launchConfetti();
+  showToast('תודה '+name+'! הניחוש שלך נרשם 🎉');
+  updateStats();renderTable();
+}
+
+function renderTable(){
+  var picks=getPicks();
+  var tbody=document.getElementById('tbody');
+  var summary=document.getElementById('summary');
+  if(!picks.length){summary.classList.remove('visible');return;}
+  summary.classList.add('visible');
+  tbody.innerHTML=picks.map(function(p){
+    return '<tr>'+
+      p.countries.map(function(c,i){return '<td class="c'+(i+1)+'">'+esc(c)+'</td>';}).join('')+
+      '<td class="nm">'+esc(p.name)+'</td></tr>';
+  }).join('');
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function resetAll(){
+  if(!confirm('למחוק את כל הניחושים?'))return;
+  localStorage.removeItem(KEY);updateStats();renderTable();
+}
+
+function shareLink(){
+  var url=window.location.href;
+  if(navigator.share){
+    navigator.share({title:'מסילות 2026 – ניחוש מונדיאל',url:url});
+  } else {
+    navigator.clipboard.writeText(url).then(function(){
+      showToast('🔗 הקישור הועתק! שלח לחברים');
+    }).catch(function(){
+      showToast('העתק את הקישור מסרגל הכתובות');
+    });
+  }
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(function(){t.classList.remove('show');},3200);
+}
+
+function launchConfetti(){
+  var el=document.getElementById('celebrate');el.innerHTML='';
+  for(var i=0;i<80;i++){
+    var p=document.createElement('div');p.className='cp';
+    p.style.cssText='left:'+(Math.random()*100)+'%;top:-10px;background:'+CONF[Math.floor(Math.random()*CONF.length)]+';animation-delay:'+(Math.random()*1)+'s;animation-duration:'+(1.5+Math.random()*1)+'s;border-radius:'+(Math.random()>.5?'50%':'2px')+';width:'+(7+Math.random()*7)+'px;height:'+(7+Math.random()*7)+'px;';
+    el.appendChild(p);
+  }
+  el.classList.add('show');setTimeout(function(){el.classList.remove('show');},3200);
+}
+
+updateStats();updateCountdown();setInterval(updateCountdown,30000);renderTable();
+</script>
+</body>
+</html>
