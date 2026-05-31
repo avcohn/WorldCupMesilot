@@ -3,46 +3,25 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>מסילות 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --blue-50:#e6f4fb;--blue-100:#c0e3f5;--blue-200:#8dcbe8;--blue-400:#3aa3d6;--blue-600:#1a7aab;--blue-800:#0d4d73;--blue-900:#072e45;
-  --gold:#c9a227;--gold-lt:#f0d060;--card:#ffffff;--text:#072e45;--muted:#4a7a95;--border:#c0e3f5;--red:#e24b4a;--radius:16px;
-}
+:root{--blue-50:#e6f4fb;--blue-100:#c0e3f5;--blue-200:#8dcbe8;--blue-400:#3aa3d6;--blue-600:#1a7aab;--blue-800:#0d4d73;--blue-900:#072e45;--gold:#c9a227;--card:#ffffff;--text:#072e45;--muted:#4a7a95;--border:#c0e3f5;--red:#e24b4a;--radius:16px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{background:#edf7fc;color:var(--text);font-family:'Heebo',sans-serif;min-height:100vh;overflow-x:hidden}
 main{max-width:540px;margin:0 auto;padding:0 1rem 5rem;position:relative}
-
-.hero{
-  text-align:center;
-  padding:1.4rem 0 .6rem;
-  position:relative;
-}
-.hero-logo-wrap{
-  position:relative;display:inline-block;
-}
-.hero-logo{
-  width:min(220px,58vw);
-  display:block;
-  mix-blend-mode:multiply;
-  animation:floatLogo 3.5s ease-in-out infinite;
-  filter:drop-shadow(0 6px 18px rgba(201,162,39,.28));
-}
+.hero{text-align:center;padding:1.4rem 0 .6rem}
+.hero-logo-wrap{position:relative;display:inline-block}
+.hero-logo{width:min(220px,58vw);display:block;mix-blend-mode:multiply;animation:floatLogo 3.5s ease-in-out infinite;filter:drop-shadow(0 6px 18px rgba(201,162,39,.28))}
 @keyframes floatLogo{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
 .hero-tagline{font-size:.9rem;font-weight:700;color:var(--blue-600);letter-spacing:.02em;margin-top:.1rem}
-
 .stats-banner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;margin:1.1rem 0}
 .stat-box{background:var(--card);border-radius:14px;border:1.5px solid var(--border);padding:.85rem .55rem;text-align:center}
 .stat-box .val{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;line-height:1;color:var(--blue-600)}
 .stat-box .lbl{font-size:.67rem;font-weight:800;color:var(--muted);margin-top:.2rem;letter-spacing:.04em;text-transform:uppercase}
 .stat-box .timer{font-size:.72rem;font-weight:800;color:var(--red);margin-top:.2rem}
-
 .top-actions{display:flex;justify-content:center;margin:0 0 1.1rem}
 .btn-rules{display:inline-flex;align-items:center;gap:.45rem;background:var(--blue-50);color:var(--blue-800);text-decoration:none;border:1.5px solid var(--border);border-radius:12px;padding:.7rem 1.4rem;font-family:'Heebo',sans-serif;font-size:.9rem;font-weight:800;transition:background .2s,border-color .2s}
 .btn-rules:hover{background:var(--blue-100);border-color:var(--blue-400)}
-
 .prize-banner{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.2rem;margin-bottom:1.1rem;border-top:4px solid var(--gold)}
 .section-label{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.1em;color:var(--gold);margin-bottom:.75rem}
 .prize-rows{display:flex;flex-direction:column;gap:.5rem}
@@ -50,14 +29,12 @@ main{max-width:540px;margin:0 auto;padding:0 1rem 5rem;position:relative}
 .prize-row .icon{font-size:1.35rem;flex-shrink:0;margin-top:.05rem}
 .prize-row .txt{font-size:.87rem;font-weight:700;line-height:1.45;color:var(--blue-900)}
 .prize-row .txt small{font-weight:500;color:var(--muted);font-size:.77rem;display:block;margin-top:.1rem}
-
 .paybox-wrap{text-align:center;margin-bottom:1.2rem}
 .btn-paybox{display:inline-flex;align-items:center;gap:.6rem;background:var(--blue-400);color:#fff;text-decoration:none;border:none;border-radius:14px;padding:.9rem 2.2rem;font-family:'Heebo',sans-serif;font-size:1rem;font-weight:900;transition:background .2s,transform .15s}
 .btn-paybox:hover{background:var(--blue-600);transform:translateY(-2px)}
 .btn-paybox:active{transform:none}
 .btn-paybox .badge{background:rgba(255,255,255,.22);border-radius:6px;padding:.1rem .45rem;font-size:.72rem;font-weight:900;letter-spacing:.04em}
 .paybox-note{margin-top:.5rem;font-size:.73rem;color:var(--muted);font-weight:600}
-
 .form-card{background:var(--card);border-radius:var(--radius);border:1.5px solid var(--border);padding:1.6rem 1.4rem;margin-bottom:1.2rem;border-top:4px solid var(--blue-400)}
 .form-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.1em;color:var(--blue-600);margin-bottom:1.1rem}
 .place-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .7rem;border-radius:11px;margin-bottom:.55rem;background:var(--blue-50);border:1.5px solid var(--border);transition:border-color .2s,background .2s}
@@ -80,7 +57,6 @@ main{max-width:540px;margin:0 auto;padding:0 1rem 5rem;position:relative}
 .btn-submit{width:100%;margin-top:1.1rem;background:var(--blue-400);color:#fff;border:none;border-radius:13px;padding:.95rem;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;cursor:pointer;font-weight:900;transition:background .2s,transform .15s}
 .btn-submit:hover{background:var(--blue-600);transform:translateY(-2px)}
 .btn-submit:active{transform:none}
-
 .page{display:block}.page.hidden{display:none}
 .rules-page{padding-top:1.2rem}
 .rules-hero{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:1.4rem 1.2rem;margin:1rem 0 1rem;border-top:4px solid var(--gold);position:relative;overflow:hidden}
@@ -99,10 +75,8 @@ main{max-width:540px;margin:0 auto;padding:0 1rem 5rem;position:relative}
 .example{display:block;color:var(--muted);font-size:.78rem;margin-top:.3rem;font-weight:600;font-style:italic}
 .btn-back{width:100%;background:var(--blue-400);color:#fff;border:none;border-radius:13px;padding:.95rem;font-family:'Heebo',sans-serif;font-size:.97rem;font-weight:900;cursor:pointer;margin:1rem 0 2.5rem;transition:background .2s}
 .btn-back:hover{background:var(--blue-600)}
-
 .toast{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(70px);background:var(--blue-900);color:#fff;border-radius:11px;padding:.7rem 1.3rem;font-size:.87rem;font-weight:700;opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
 #summary{display:none;margin-top:.5rem}
 #summary.visible{display:block}
 .summary-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;color:var(--blue-600);margin-bottom:.85rem;display:flex;align-items:center;gap:.5rem}
@@ -122,7 +96,6 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
 .btn-share:hover{background:var(--blue-100)}
 .btn-reset{display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:1.5px solid #ddd;color:#9ca3af;border-radius:9px;padding:.42rem 1.1rem;font-family:'Heebo',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:border-color .15s,color .15s}
 .btn-reset:hover{border-color:var(--red);color:var(--red)}
-
 .celebrate{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none}
 .celebrate.show{display:block}
 .cp{position:absolute;width:9px;height:9px;animation:fall 1.8s ease-in forwards}
@@ -132,7 +105,6 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
 <body>
 <div class="celebrate" id="celebrate"></div>
 <div class="toast" id="toast"></div>
-
 <main>
   <section id="homePage" class="page">
     <div class="hero">
@@ -143,19 +115,9 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
     </div>
 
     <div class="stats-banner">
-      <div class="stat-box">
-        <div class="val" id="stat-players">0</div>
-        <div class="lbl">משתתפים</div>
-      </div>
-      <div class="stat-box">
-        <div class="val" id="stat-pot">0₪</div>
-        <div class="lbl">קופה כוללת</div>
-      </div>
-      <div class="stat-box">
-        <div class="val">⏰</div>
-        <div class="lbl">ניחושים עד</div>
-        <div class="timer" id="countdown">10.6.2026</div>
-      </div>
+      <div class="stat-box"><div class="val" id="stat-players">0</div><div class="lbl">משתתפים</div></div>
+      <div class="stat-box"><div class="val" id="stat-pot">0₪</div><div class="lbl">קופה כוללת</div></div>
+      <div class="stat-box"><div class="val">⏰</div><div class="lbl">ניחושים עד</div><div class="timer" id="countdown">10.6.2026</div></div>
     </div>
 
     <div class="top-actions">
@@ -168,7 +130,7 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
         <div class="prize-row">
           <span class="icon">🥇</span>
           <div class="txt">מקום ראשון – זוכה בכל הקופה!
-            <small>מנחש נכון של ארבעת המקומות, או הכי קרוב לזה</small>
+            <small>הניחוש עם הניקוד הגבוה ביותר לפי התקנון</small>
           </div>
         </div>
         <div class="prize-row">
@@ -194,31 +156,12 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
 
     <div class="form-card">
       <div class="form-card-title">✏️ הדירוג שלי</div>
-      <div class="place-row">
-        <div class="medal">🥇</div>
-        <div class="place-meta"><strong>מקום 1</strong><span>אלוף העולם</span></div>
-        <input class="country-input" id="c1" type="text" placeholder="שם המדינה" maxlength="30"/>
-      </div>
-      <div class="place-row">
-        <div class="medal">🥈</div>
-        <div class="place-meta"><strong>מקום 2</strong><span>סגן אלוף</span></div>
-        <input class="country-input" id="c2" type="text" placeholder="שם המדינה" maxlength="30"/>
-      </div>
-      <div class="place-row">
-        <div class="medal">🥉</div>
-        <div class="place-meta"><strong>מקום 3</strong><span>מקום שלישי</span></div>
-        <input class="country-input" id="c3" type="text" placeholder="שם המדינה" maxlength="30"/>
-      </div>
-      <div class="place-row">
-        <div class="medal">⚽</div>
-        <div class="place-meta"><strong>מקום 4</strong><span>חצי גמר</span></div>
-        <input class="country-input" id="c4" type="text" placeholder="שם המדינה" maxlength="30"/>
-      </div>
+      <div class="place-row"><div class="medal">🥇</div><div class="place-meta"><strong>מקום 1</strong><span>אלוף העולם</span></div><input class="country-input" id="c1" type="text" placeholder="שם המדינה" maxlength="30"/></div>
+      <div class="place-row"><div class="medal">🥈</div><div class="place-meta"><strong>מקום 2</strong><span>סגן אלוף</span></div><input class="country-input" id="c2" type="text" placeholder="שם המדינה" maxlength="30"/></div>
+      <div class="place-row"><div class="medal">🥉</div><div class="place-meta"><strong>מקום 3</strong><span>מקום שלישי</span></div><input class="country-input" id="c3" type="text" placeholder="שם המדינה" maxlength="30"/></div>
+      <div class="place-row"><div class="medal">⚽</div><div class="place-meta"><strong>מקום 4</strong><span>חצי גמר</span></div><input class="country-input" id="c4" type="text" placeholder="שם המדינה" maxlength="30"/></div>
       <div class="divider">✦ פרטי המנחש ✦</div>
-      <div class="name-row">
-        <label>👤 שמך:</label>
-        <input class="name-input" id="guesser" type="text" placeholder="כתוב את שמך כאן" maxlength="30"/>
-      </div>
+      <div class="name-row"><label>👤 שמך:</label><input class="name-input" id="guesser" type="text" placeholder="כתוב את שמך כאן" maxlength="30"/></div>
       <button class="btn-submit" onclick="submitPick()">⚽ שלח ניחוש!</button>
     </div>
 
@@ -226,9 +169,7 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
       <div class="summary-title">📋 טבלת ניחושים</div>
       <div class="table-wrap">
         <table>
-          <thead><tr>
-            <th>🥇 מקום 1</th><th>🥈 מקום 2</th><th>🥉 מקום 3</th><th>⚽ מקום 4</th><th>👤 מנחש</th>
-          </tr></thead>
+          <thead><tr><th>🥇 מקום 1</th><th>🥈 מקום 2</th><th>🥉 מקום 3</th><th>⚽ מקום 4</th><th>👤 מנחש</th></tr></thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
@@ -244,32 +185,16 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
       <h1>תקנון תחרות ניחוש ארבעת המקומות הראשונים</h1>
       <p>כיצד מנחשים, כיצד מחשבים נקודות, וכיצד נקבע הזוכה.</p>
     </div>
-    <div class="rules-card">
-      <h2>1. כללי</h2>
-      <p>המשתתפים ינחשו את ארבע הנבחרות שיסיימו בארבעת המקומות הראשונים בטורניר, כולל דירוגן הסופי.</p>
-    </div>
+    <div class="rules-card"><h2>1. כללי</h2><p>המשתתפים ינחשו את ארבע הנבחרות שיסיימו בארבעת המקומות הראשונים בטורניר, כולל דירוגן הסופי.</p></div>
     <div class="rules-card">
       <h2>2. שיטת הניקוד</h2>
       <div class="score-grid">
-        <div class="score-box">
-          <strong>בול במקום</strong>
-          <span class="pts">10 נקודות</span>
-          <p>ניחוש נכון של הנבחרת והמיקום המדויק.</p>
-          <span class="example">ברזיל מקום 2, ברזיל הגיעה ל-2 ✓</span>
-        </div>
-        <div class="score-box">
-          <strong>פגיעה חלקית</strong>
-          <span class="pts">5 נקודות</span>
-          <p>נבחרת שהגיעה לטופ-4 אך במיקום אחר.</p>
-          <span class="example">צרפת מקום 1, בפועל הגיעה ל-2</span>
-        </div>
+        <div class="score-box"><strong>בול במקום</strong><span class="pts">10 נקודות</span><p>ניחוש נכון של הנבחרת והמיקום המדויק.</p><span class="example">ברזיל מקום 2, ברזיל הגיעה ל-2 ✓</span></div>
+        <div class="score-box"><strong>פגיעה חלקית</strong><span class="pts">5 נקודות</span><p>נבחרת שהגיעה לטופ-4 אך במיקום אחר.</p><span class="example">צרפת מקום 1, בפועל הגיעה ל-2</span></div>
       </div>
       <p style="margin-top:.75rem;font-size:.85rem;color:var(--muted)">לא יינתן ניקוד עבור נבחרת שלא סיימה בארבעת המקומות.</p>
     </div>
-    <div class="rules-card">
-      <h2>3. קביעת הזוכה</h2>
-      <p>הזוכה יהיה המשתתף עם מספר הנקודות הגבוה ביותר.</p>
-    </div>
+    <div class="rules-card"><h2>3. קביעת הזוכה</h2><p>הזוכה יהיה המשתתף עם מספר הנקודות הגבוה ביותר.</p></div>
     <div class="rules-card">
       <h2>4. שוברי שוויון</h2>
       <ol>
@@ -282,7 +207,6 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
     <button class="btn-back" onclick="showHome()">⬅ חזרה לעמוד הניחוש</button>
   </section>
 </main>
-
 <script>
 var KEY='massilot2026',ENTRY_FEE=50,DEADLINE=new Date('2026-06-10T23:59:59');
 var CONF=['#3aa3d6','#c0e3f5','#8dcbe8','#1a7aab','#c9a227','#f0d060'];
