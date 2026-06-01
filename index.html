@@ -1,142 +1,715 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-<style>
-:root{--blue-50:#e6f4fb;--blue-100:#c0e3f5;--blue-200:#8dcbe8;--blue-400:#3aa3d6;--blue-600:#1a7aab;--blue-800:#0d4d73;--blue-900:#072e45;--gold:#c9a227;--card:#ffffff;--text:#072e45;--muted:#4a7a95;--border:#c0e3f5;--red:#e24b4a;--radius:16px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:#edf7fc;color:var(--text);font-family:'Heebo',sans-serif;min-height:100vh;overflow-x:hidden}
-main{max-width:540px;margin:0 auto;padding:0 1rem 5rem;position:relative}
-.hero{text-align:center;padding:1.4rem 0 .6rem}
-.hero-logo-wrap{position:relative;display:inline-block}
-.hero-logo{width:min(220px,58vw);display:block;mix-blend-mode:multiply;animation:floatLogo 3.5s ease-in-out infinite;filter:drop-shadow(0 6px 18px rgba(201,162,39,.28))}
-@keyframes floatLogo{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
-.hero-tagline{font-size:.9rem;font-weight:700;color:var(--blue-600);letter-spacing:.02em;margin-top:.1rem}
-.stats-banner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;margin:1.1rem 0}
-.stat-box{background:var(--card);border-radius:14px;border:1.5px solid var(--border);padding:.85rem .55rem;text-align:center}
-.stat-box .val{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;line-height:1;color:var(--blue-600)}
-.stat-box .lbl{font-size:.67rem;font-weight:800;color:var(--muted);margin-top:.2rem;letter-spacing:.04em;text-transform:uppercase}
-.stat-box .timer{font-size:.72rem;font-weight:800;color:var(--red);margin-top:.2rem}
-.top-actions{display:flex;justify-content:center;margin:0 0 1.1rem}
-.btn-rules{display:inline-flex;align-items:center;gap:.45rem;background:var(--blue-50);color:var(--blue-800);text-decoration:none;border:1.5px solid var(--border);border-radius:12px;padding:.7rem 1.4rem;font-family:'Heebo',sans-serif;font-size:.9rem;font-weight:800;transition:background .2s,border-color .2s}
-.btn-rules:hover{background:var(--blue-100);border-color:var(--blue-400)}
-.prize-banner{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.2rem;margin-bottom:1.1rem;border-top:4px solid var(--gold)}
-.section-label{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.1em;color:var(--gold);margin-bottom:.75rem}
-.prize-rows{display:flex;flex-direction:column;gap:.5rem}
-.prize-row{display:flex;align-items:flex-start;gap:.75rem;background:var(--blue-50);border:1px solid var(--border);border-radius:10px;padding:.6rem .85rem}
-.prize-row .icon{font-size:1.35rem;flex-shrink:0;margin-top:.05rem}
-.prize-row .txt{font-size:.87rem;font-weight:700;line-height:1.45;color:var(--blue-900)}
-.prize-row .txt small{font-weight:500;color:var(--muted);font-size:.77rem;display:block;margin-top:.1rem}
-.paybox-wrap{text-align:center;margin-bottom:1.2rem}
-.btn-paybox{display:inline-flex;align-items:center;gap:.6rem;background:var(--blue-400);color:#fff;text-decoration:none;border:none;border-radius:14px;padding:.9rem 2.2rem;font-family:'Heebo',sans-serif;font-size:1rem;font-weight:900;transition:background .2s,transform .15s}
-.btn-paybox:hover{background:var(--blue-600);transform:translateY(-2px)}
-.btn-paybox:active{transform:none}
-.btn-paybox .badge{background:rgba(255,255,255,.22);border-radius:6px;padding:.1rem .45rem;font-size:.72rem;font-weight:900;letter-spacing:.04em}
-.paybox-note{margin-top:.5rem;font-size:.73rem;color:var(--muted);font-weight:600}
-.form-card{background:var(--card);border-radius:var(--radius);border:1.5px solid var(--border);padding:1.6rem 1.4rem;margin-bottom:1.2rem;border-top:4px solid var(--blue-400)}
-.form-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.1em;color:var(--blue-600);margin-bottom:1.1rem}
-.place-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .7rem;border-radius:11px;margin-bottom:.55rem;background:var(--blue-50);border:1.5px solid var(--border);transition:border-color .2s,background .2s}
-.place-row:focus-within{background:#fff;border-color:var(--blue-400)}
-.medal{font-size:1.45rem;flex-shrink:0;width:1.9rem;text-align:center}
-.place-meta{flex-shrink:0;width:5.2rem}
-.place-meta strong{display:block;font-size:.9rem;font-weight:900;color:var(--blue-800);line-height:1.1}
-.place-meta span{font-size:.63rem;color:var(--muted);font-weight:600}
-.country-input{flex:1;min-width:0;background:#fff;border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Heebo',sans-serif;font-size:.93rem;font-weight:700;padding:.48rem .7rem;direction:rtl;outline:none;transition:border-color .2s}
-.country-input::placeholder{color:#a8bdd0;font-weight:400}
-.country-input:focus{border-color:var(--blue-400)}
-.divider{display:flex;align-items:center;gap:.6rem;margin:1.1rem 0 .9rem;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.05em}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
-.name-row{display:flex;align-items:center;gap:.75rem;background:var(--blue-50);border:1.5px solid var(--border);border-radius:11px;padding:.6rem .7rem;transition:border-color .2s}
-.name-row:focus-within{border-color:var(--blue-400)}
-.name-row label{font-size:.87rem;font-weight:800;color:var(--blue-800);flex-shrink:0;white-space:nowrap}
-.name-input{flex:1;min-width:0;background:#fff;border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Heebo',sans-serif;font-size:.9rem;font-weight:700;padding:.46rem .7rem;direction:rtl;outline:none;transition:border-color .2s}
-.name-input::placeholder{color:#a8bdd0;font-weight:400}
-.name-input:focus{border-color:var(--blue-400)}
-.btn-submit{width:100%;margin-top:1.1rem;background:var(--blue-400);color:#fff;border:none;border-radius:13px;padding:.95rem;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;cursor:pointer;font-weight:900;transition:background .2s,transform .15s}
-.btn-submit:hover{background:var(--blue-600);transform:translateY(-2px)}
-.btn-submit:active{transform:none}
-.page{display:block}.page.hidden{display:none}
-.rules-page{padding-top:1.2rem}
-.rules-hero{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:1.4rem 1.2rem;margin:1rem 0 1rem;border-top:4px solid var(--gold);position:relative;overflow:hidden}
-.rules-hero::before{content:'⚽';position:absolute;left:.8rem;top:.5rem;font-size:3.5rem;opacity:.08;transform:rotate(-15deg)}
-.rules-hero h1{font-size:1.35rem;line-height:1.3;color:var(--blue-800);font-weight:900;margin-bottom:.4rem}
-.rules-hero p{color:var(--muted);font-weight:600;font-size:.87rem;line-height:1.6;max-width:88%}
-.rules-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:1.2rem;margin-bottom:.85rem}
-.rules-card h2{display:flex;align-items:center;gap:.4rem;color:var(--blue-600);font-size:1rem;font-weight:900;margin-bottom:.6rem}
-.rules-card p,.rules-card li{font-size:.87rem;line-height:1.75;color:var(--text);font-weight:600}
-.rules-card ul,.rules-card ol{padding-right:1.2rem}
-.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.7rem}
-.score-box{background:var(--blue-50);border:1.5px solid var(--border);border-radius:13px;padding:.85rem}
-.score-box strong{display:block;color:var(--blue-800);font-size:.95rem;font-weight:900;margin-bottom:.2rem}
-.score-box .pts{display:inline-block;background:var(--blue-400);color:#fff;border-radius:999px;padding:.1rem .65rem;font-weight:900;font-size:.82rem;margin-bottom:.3rem}
-.score-box p{font-size:.8rem;line-height:1.55;color:var(--muted)}
-.example{display:block;color:var(--muted);font-size:.78rem;margin-top:.3rem;font-weight:600;font-style:italic}
-.btn-back{width:100%;background:var(--blue-400);color:#fff;border:none;border-radius:13px;padding:.95rem;font-family:'Heebo',sans-serif;font-size:.97rem;font-weight:900;cursor:pointer;margin:1rem 0 2.5rem;transition:background .2s}
-.btn-back:hover{background:var(--blue-600)}
-.toast{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(70px);background:var(--blue-900);color:#fff;border-radius:11px;padding:.7rem 1.3rem;font-size:.87rem;font-weight:700;opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap;max-width:90vw;text-align:center}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-#summary{display:none;margin-top:.5rem}
-#summary.visible{display:block}
-.summary-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;color:var(--blue-600);margin-bottom:.85rem;display:flex;align-items:center;gap:.5rem}
-.summary-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--blue-200),transparent)}
-.table-wrap{background:var(--card);border-radius:14px;border:1.5px solid var(--border);overflow-x:auto}
-table{width:100%;border-collapse:collapse;direction:rtl;min-width:330px}
-thead tr{background:var(--blue-100)}
-thead th{padding:.75rem .85rem;font-family:'Heebo',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.04em;color:var(--blue-800);text-align:right;white-space:nowrap}
-tbody tr:nth-child(odd){background:#fff}
-tbody tr:nth-child(even){background:var(--blue-50)}
-tbody tr:hover{background:var(--blue-100)}
-tbody td{padding:.6rem .85rem;font-size:.86rem;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
-.c1{color:var(--blue-800);font-weight:800}.c2{color:var(--blue-600);font-weight:800}.c3{color:var(--blue-400);font-weight:800}.c4{color:#1a5e8f;font-weight:800}
-td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
-.action-row{display:flex;gap:.7rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
-.btn-share{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-50);border:1.5px solid var(--border);color:var(--blue-800);border-radius:9px;padding:.42rem 1.1rem;font-family:'Heebo',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .15s}
-.btn-share:hover{background:var(--blue-100)}
-.btn-reset{display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:1.5px solid #ddd;color:#9ca3af;border-radius:9px;padding:.42rem 1.1rem;font-family:'Heebo',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:border-color .15s,color .15s}
-.btn-reset:hover{border-color:var(--red);color:var(--red)}
-.celebrate{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none}
-.celebrate.show{display:block}
-.cp{position:absolute;width:9px;height:9px;animation:fall 1.8s ease-in forwards}
-@keyframes fall{0%{transform:translateY(-30px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>מסילות 2026 – ניחוש המונדיאל</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --blue:#2d9cdb;
+      --blue-lt:#64bff4;
+      --blue-pale:#eef9ff;
+      --blue-mid:#8ed8ff;
+      --blue-border:#b8e3fb;
+      --red:#e53935;
+      --green:#22c55e;
+      --card:#ffffff;
+      --text:#123047;
+      --muted:#5c7890;
+      --radius:18px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    body{
+      background:linear-gradient(160deg,#eaf8ff 0%,#f8fdff 46%,#dff4ff 100%);
+      background-attachment:fixed;
+      color:var(--text);
+      font-family:'Heebo',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(ellipse 70% 40% at 10% 20%, rgba(100,191,244,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(45,156,219,.14) 0%, transparent 60%),
+        repeating-linear-gradient(135deg,
+          rgba(142,216,255,.08) 0,
+          rgba(142,216,255,.08) 1px,
+          transparent 1px,
+          transparent 28px);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    main{
+      position:relative;
+      z-index:1;
+      max-width:580px;
+      margin:0 auto;
+      padding:0 1rem 5rem;
+    }
+
+    .page{display:block}
+    .page.hidden{display:none}
+
+    /* ── HERO ── */
+    .hero{
+      text-align:center;
+      padding:2.2rem 0 0;
+    }
+
+    .hero img{
+      width:min(200px,55vw);
+      filter:drop-shadow(0 10px 28px rgba(45,156,219,.22));
+      animation:floatLogo 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo{
+      0%,100%{transform:translateY(0) rotate(-1.2deg)}
+      50%{transform:translateY(-12px) rotate(1.2deg)}
+    }
+
+    .hero-tagline{
+      margin-top:.7rem;
+      font-size:1rem;
+      font-weight:700;
+      color:var(--blue);
+      letter-spacing:.03em;
+    }
+
+    /* ── STATS ── */
+    .stats-banner{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:.7rem;
+      margin:1.4rem 0;
+    }
+
+    .stat-box{
+      background:var(--card);
+      border-radius:14px;
+      border:1.5px solid var(--blue-border);
+      padding:.9rem .6rem;
+      text-align:center;
+      box-shadow:0 2px 14px rgba(45,156,219,.1);
+      position:relative;
+      overflow:hidden;
+      transition:.3s;
+    }
+
+    /* shimmer pulse while loading */
+    .stat-box.loading .val::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
+      animation:shimmer 1.2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer{
+      0%{transform:translateX(100%)}
+      100%{transform:translateX(-100%)}
+    }
+
+    .stat-box .val{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.9rem;
+      line-height:1;
+      color:var(--blue);
+      position:relative;
+    }
+
+    /* flash animation when stats update */
+    .stat-box.updated .val{
+      animation:flashVal .5s ease;
+    }
+    @keyframes flashVal{
+      0%{color:var(--green);transform:scale(1.15)}
+      100%{color:var(--blue);transform:scale(1)}
+    }
+
+    .stat-box .lbl{
+      font-size:.68rem;
+      font-weight:700;
+      color:var(--muted);
+      margin-top:.2rem;
+      letter-spacing:.04em;
+    }
+
+    .stat-box .deadline-timer{
+      font-size:.72rem;
+      font-weight:800;
+      color:var(--red);
+      margin-top:.25rem;
+    }
+
+    /* ── TOP ACTIONS ── */
+    .top-actions{
+      display:flex;
+      justify-content:center;
+      gap:.7rem;
+      flex-wrap:wrap;
+      margin:-.2rem 0 1.2rem;
+    }
+
+    .btn-rules{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      background:#ffffffcc;
+      color:var(--blue);
+      text-decoration:none;
+      border:1.5px solid var(--blue-border);
+      border-radius:14px;
+      padding:.78rem 1.35rem;
+      font-size:.92rem;
+      font-weight:900;
+      box-shadow:0 4px 18px rgba(45,156,219,.14);
+      transition:.2s;
+    }
+
+    .btn-rules:hover{
+      transform:translateY(-2px);
+      background:#fff;
+      box-shadow:0 8px 26px rgba(45,156,219,.22);
+    }
+
+    /* ── PRIZE BANNER ── */
+    .prize-banner{
+      background:linear-gradient(135deg,#77cffa 0%,#aee5ff 65%,#e6f8ff 100%);
+      border:1.5px solid var(--blue-border);
+      border-radius:var(--radius);
+      padding:1.1rem 1.4rem;
+      margin-bottom:1.2rem;
+      color:#123047;
+      box-shadow:0 4px 22px rgba(45,156,219,.18);
+    }
+
+    .prize-banner h2{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.25rem;
+      letter-spacing:.08em;
+      margin-bottom:.6rem;
+      color:#117fbd;
+    }
+
+    .prize-rows{
+      display:flex;
+      flex-direction:column;
+      gap:.4rem;
+    }
+
+    .prize-row{
+      display:flex;
+      align-items:flex-start;
+      gap:.7rem;
+      background:rgba(255,255,255,.58);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:10px;
+      padding:.55rem .8rem;
+    }
+
+    .prize-row .icon{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+    .prize-row .txt{font-size:.88rem;font-weight:700;line-height:1.4}
+    .prize-row .txt small{font-weight:500;opacity:.88;font-size:.78rem;display:block;margin-top:.1rem}
+
+    /* ── PAYBOX ── */
+    .paybox-wrap{
+      text-align:center;
+      margin-bottom:1.4rem;
+    }
+
+    .btn-paybox{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      background:linear-gradient(135deg,#4bb3e8,#8ed8ff);
+      color:#103348;
+      text-decoration:none;
+      border:1px solid var(--blue-border);
+      border-radius:14px;
+      padding:.9rem 2.2rem;
+      font-size:1.02rem;
+      font-weight:900;
+      box-shadow:0 4px 22px rgba(45,156,219,.22);
+      transition:.2s;
+    }
+
+    .btn-paybox:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 30px rgba(45,156,219,.32);
+    }
+
+    .btn-paybox .paybox-icon{
+      background:#fff;
+      color:#168ac8;
+      border-radius:7px;
+      padding:.15rem .45rem;
+      font-size:.75rem;
+      font-weight:900;
+      letter-spacing:.03em;
+    }
+
+    .paybox-note{margin-top:.5rem;font-size:.75rem;color:var(--muted);font-weight:600}
+
+    /* ── FORM CARD ── */
+    .form-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      border:2px solid var(--blue-border);
+      box-shadow:0 6px 32px rgba(45,156,219,.1);
+      padding:1.8rem 1.5rem;
+      position:relative;
+      overflow:hidden;
+      margin-bottom:1.4rem;
+    }
+
+    .form-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:5px;
+      background:linear-gradient(90deg,#7ed3fb,#c8efff,#7ed3fb);
+    }
+
+    /* deadline passed overlay */
+    .form-card.expired{
+      pointer-events:none;
+      opacity:.55;
+      filter:grayscale(.4);
+    }
+
+    .expired-badge{
+      display:none;
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%) rotate(-12deg);
+      background:rgba(229,57,53,.9);
+      color:#fff;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:2.4rem;
+      letter-spacing:.1em;
+      padding:.4rem 1.2rem;
+      border-radius:12px;
+      z-index:10;
+      pointer-events:none;
+      white-space:nowrap;
+    }
+
+    .form-card.expired .expired-badge{display:block}
+
+    .form-card-title{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.35rem;
+      letter-spacing:.1em;
+      color:var(--blue);
+      margin-bottom:1.2rem;
+    }
+
+    .place-row{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      padding:.65rem .75rem;
+      border-radius:12px;
+      margin-bottom:.6rem;
+      background:var(--blue-pale);
+      border:1.5px solid #d0effc;
+      transition:.2s;
+    }
+
+    .place-row:focus-within{
+      background:#fff;
+      border-color:var(--blue-lt);
+      box-shadow:0 0 0 3px rgba(100,191,244,.15);
+    }
+
+    .medal-icon{font-size:1.6rem;flex-shrink:0;width:2rem;text-align:center}
+
+    .place-meta{flex-shrink:0;width:5.5rem}
+    .place-meta strong{display:block;font-size:.95rem;font-weight:900;line-height:1.1}
+    .place-meta span{font-size:.65rem;color:var(--muted);font-weight:600}
+
+    .country-input{
+      flex:1;min-width:0;
+      background:#fff;
+      border:1.5px solid #c6ddeb;
+      border-radius:9px;
+      color:var(--text);
+      font-family:'Heebo',sans-serif;
+      font-size:.95rem;
+      font-weight:700;
+      padding:.5rem .75rem;
+      direction:rtl;
+      outline:none;
+      transition:.2s;
+    }
+
+    .country-input::placeholder{color:#a8bdd0;font-weight:400}
+
+    .country-input:focus{
+      border-color:var(--blue-lt);
+      box-shadow:0 0 0 3px rgba(100,191,244,.12);
+    }
+
+    /* valid/invalid highlights */
+    .country-input.valid{border-color:#22c55e!important;background:#f0fff4!important}
+    .country-input.invalid{border-color:#e53935!important;background:#fff5f5!important}
+
+    .divider{
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      margin:1.2rem 0 1rem;
+      color:var(--muted);
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.05em;
+    }
+
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--blue-border)}
+
+    .name-row{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      background:#f3fbff;
+      border:1.5px solid var(--blue-border);
+      border-radius:12px;
+      padding:.65rem .75rem;
+    }
+
+    .name-row label{font-size:.88rem;font-weight:800;color:var(--blue);flex-shrink:0;white-space:nowrap}
+
+    .name-input{
+      flex:1;min-width:0;
+      background:#fff;
+      border:1.5px solid var(--blue-border);
+      border-radius:9px;
+      color:var(--text);
+      font-family:'Heebo',sans-serif;
+      font-size:.92rem;
+      font-weight:700;
+      padding:.48rem .75rem;
+      direction:rtl;
+      outline:none;
+    }
+
+    .btn-submit{
+      width:100%;
+      margin-top:1.2rem;
+      background:linear-gradient(135deg,#4bb3e8 0%,#95dcff 100%);
+      color:#103348;
+      border:1px solid var(--blue-border);
+      border-radius:14px;
+      padding:1rem;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.45rem;
+      letter-spacing:.12em;
+      cursor:pointer;
+      box-shadow:0 4px 20px rgba(45,156,219,.24);
+      transition:.2s;
+      font-weight:900;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .btn-submit:hover:not(:disabled){
+      transform:translateY(-3px);
+      box-shadow:0 8px 28px rgba(45,156,219,.34);
+    }
+
+    .btn-submit:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    /* loading spinner in button */
+    .btn-submit.sending::after{
+      content:'';
+      position:absolute;
+      top:50%;right:1.2rem;
+      width:18px;height:18px;
+      margin-top:-9px;
+      border:2px solid rgba(16,51,72,.3);
+      border-top-color:#103348;
+      border-radius:50%;
+      animation:spin .7s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── CONFIRMATION CARD ── */
+    .confirm-card{
+      display:none;
+      background:linear-gradient(135deg,#e8f9f0,#f0fff8);
+      border:2px solid #86efac;
+      border-radius:var(--radius);
+      padding:1.4rem;
+      text-align:center;
+      margin-bottom:1.2rem;
+      animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    @keyframes popIn{
+      from{transform:scale(.88);opacity:0}
+      to{transform:scale(1);opacity:1}
+    }
+
+    .confirm-card.visible{display:block}
+
+    .confirm-card .check-icon{font-size:3rem;line-height:1;margin-bottom:.5rem}
+    .confirm-card h3{font-size:1.2rem;font-weight:900;color:#15803d;margin-bottom:.4rem}
+    .confirm-card p{font-size:.88rem;color:#166534;font-weight:600;line-height:1.5}
+    .confirm-card .pick-summary{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-top:.8rem;
+    }
+    .pick-chip{
+      background:#fff;
+      border:1.5px solid #86efac;
+      border-radius:999px;
+      padding:.25rem .75rem;
+      font-size:.8rem;
+      font-weight:800;
+      color:#15803d;
+      display:flex;
+      align-items:center;
+      gap:.3rem;
+    }
+
+    /* ── SUMMARY TABLE ── */
+    #summary{display:none;margin-top:.5rem}
+    #summary.visible{display:block}
+
+    .summary-title{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.4rem;
+      letter-spacing:.1em;
+      color:var(--blue);
+      margin-bottom:.9rem;
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+    }
+
+    .summary-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--blue-mid),transparent)}
+
+    .table-wrap{
+      background:var(--card);
+      border-radius:16px;
+      border:2px solid var(--blue-border);
+      box-shadow:0 4px 20px rgba(45,156,219,.1);
+      overflow-x:auto;
+    }
+
+    table{width:100%;border-collapse:collapse;direction:rtl;min-width:360px}
+
+    thead tr{background:linear-gradient(90deg,#6cc8f5,#aee5ff)}
+
+    thead th{
+      padding:.8rem .9rem;
+      font-size:.8rem;
+      font-weight:800;
+      color:#123047;
+      text-align:right;
+      white-space:nowrap;
+    }
+
+    tbody tr:nth-child(odd){background:#fff}
+    tbody tr:nth-child(even){background:var(--blue-pale)}
+    tbody tr:hover{background:#e4f7ff}
+    tbody tr.new-row{animation:rowPop .4s ease}
+    @keyframes rowPop{from{background:#d1fae5}to{background:inherit}}
+
+    tbody td{
+      padding:.65rem .9rem;
+      font-size:.88rem;
+      font-weight:600;
+      border-bottom:1px solid #dceef7;
+      white-space:nowrap;
+    }
+
+    td.c1{color:#117fbd;font-weight:800}
+    td.c2{color:#4498c6;font-weight:800}
+    td.c3{color:#5aabc9;font-weight:800}
+    td.c4{color:#1565c0;font-weight:800}
+    td.nm{color:var(--blue);font-weight:700;font-size:.8rem}
+
+    .action-row{
+      display:flex;gap:.8rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap;
+    }
+
+    .btn-share,.btn-reset{
+      display:inline-flex;align-items:center;gap:.4rem;
+      border-radius:9px;padding:.42rem 1.1rem;
+      font-family:'Heebo',sans-serif;font-size:.83rem;font-weight:700;cursor:pointer;
+    }
+
+    .btn-share{background:var(--blue-pale);border:1.5px solid var(--blue-border);color:var(--blue)}
+    .btn-reset{background:transparent;border:1.5px solid #ccc;color:#9ca3af}
+
+    /* ── RULES PAGE ── */
+    .rules-page{padding-top:1.4rem}
+
+    .rules-hero{
+      background:linear-gradient(135deg,#e9f8ff 0%,#ffffff 52%,#dff4ff 100%);
+      border:2px solid var(--blue-border);
+      border-radius:24px;
+      padding:1.4rem 1.25rem;
+      box-shadow:0 8px 34px rgba(45,156,219,.14);
+      margin:1rem 0 1.1rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .rules-hero::before{
+      content:'⚽';
+      position:absolute;left:1rem;top:.75rem;
+      font-size:4rem;opacity:.12;transform:rotate(-15deg);
+    }
+
+    .rules-hero h1{font-size:1.45rem;line-height:1.25;color:var(--blue);font-weight:900;margin-bottom:.45rem}
+    .rules-hero p{color:var(--muted);font-weight:700;font-size:.9rem;line-height:1.55;max-width:90%}
+
+    .rules-card{
+      background:#fff;border:2px solid var(--blue-border);border-radius:20px;
+      padding:1.25rem;box-shadow:0 6px 28px rgba(45,156,219,.11);margin-bottom:1rem;
+    }
+
+    .rules-card h2{color:var(--blue);font-size:1.05rem;font-weight:900;margin-bottom:.65rem}
+    .rules-card p,.rules-card li{font-size:.9rem;line-height:1.75;color:var(--text);font-weight:600}
+    .rules-card ol{padding-right:1.2rem}
+
+    .score-box{
+      background:var(--blue-pale);border:1.5px solid #c7e9fb;border-radius:16px;
+      padding:.9rem;margin-top:.7rem;
+    }
+
+    .score-box strong{display:block;color:var(--blue);font-size:1rem;font-weight:900;margin-bottom:.25rem}
+    .points{
+      display:inline-block;background:#fff;color:var(--blue);
+      border:1px solid var(--blue-border);border-radius:999px;
+      padding:.12rem .65rem;font-weight:900;margin-bottom:.35rem;
+    }
+
+    .example{display:block;color:var(--muted);font-size:.82rem;margin-top:.25rem;font-weight:600}
+
+    .btn-back{
+      width:100%;
+      background:linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%);
+      color:#fff;border:none;border-radius:14px;padding:1rem;
+      font-size:1rem;font-weight:900;cursor:pointer;
+      box-shadow:0 4px 20px rgba(45,156,219,.28);margin:1rem 0 2rem;
+    }
+
+    /* ── TOAST ── */
+    .toast{
+      position:fixed;bottom:2rem;left:50%;
+      transform:translateX(-50%) translateY(80px);
+      background:#123047;color:#fff;border-radius:12px;
+      padding:.75rem 1.4rem;font-size:.9rem;font-weight:700;
+      box-shadow:0 6px 24px rgba(0,0,0,.25);opacity:0;transition:.35s;
+      pointer-events:none;z-index:1000;white-space:nowrap;
+    }
+
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+    /* ── CONFETTI ── */
+    .celebrate{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;display:none}
+    .celebrate.show{display:block}
+    .cp{position:absolute;width:10px;height:10px;animation:fall 2s ease-in forwards}
+    @keyframes fall{
+      0%{transform:translateY(-40px) rotate(0deg);opacity:1}
+      100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+    }
+
+    /* ── STATUS INDICATOR ── */
+    .stats-status{
+      display:flex;align-items:center;gap:.4rem;
+      justify-content:center;margin-bottom:.8rem;
+      font-size:.72rem;font-weight:700;color:var(--muted);
+    }
+
+    .status-dot{
+      width:7px;height:7px;border-radius:50%;background:#22c55e;
+      animation:pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+
+    .status-dot.error{background:#e53935;animation:none}
+    .status-dot.loading{background:#f59e0b}
+  </style>
 </head>
+
 <body>
 <div class="celebrate" id="celebrate"></div>
 <div class="toast" id="toast"></div>
+
 <main>
+
+  <!-- ═══════════════ HOME PAGE ═══════════════ -->
   <section id="homePage" class="page">
+
     <div class="hero">
-      <div class="hero-logo-wrap">
-        <img class="hero-logo" src="logo.png" alt="מסילות 2026"/>
-      </div>
-      <p class="hero-tagline">מי יגיע לפודיום? מלא את הניחוש שלך!</p>
+      <img src="logo.png" alt="מסילות 2026"/>
+      <p class="hero-tagline">⚽ מי יגיע לפודיום? מלא את הניחוש שלך! ⚽</p>
+    </div>
+
+    <!-- stats status indicator -->
+    <div class="stats-status">
+      <div class="status-dot loading" id="statusDot"></div>
+      <span id="statusText">טוען נתונים...</span>
     </div>
 
     <div class="stats-banner">
-      <div class="stat-box"><div class="val" id="stat-players">0</div><div class="lbl">משתתפים</div></div>
-      <div class="stat-box"><div class="val" id="stat-pot">0₪</div><div class="lbl">קופה כוללת</div></div>
-      <div class="stat-box"><div class="val">⏰</div><div class="lbl">ניחושים עד</div><div class="timer" id="countdown">10.6.2026</div></div>
+      <div class="stat-box loading" id="boxPlayers">
+        <div class="val" id="stat-players">—</div>
+        <div class="lbl">משתתפים</div>
+      </div>
+
+      <div class="stat-box loading" id="boxPot">
+        <div class="val" id="stat-pot">—</div>
+        <div class="lbl">קופה כוללת</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="val">⏰</div>
+        <div class="lbl">ניחושים עד</div>
+        <div class="deadline-timer" id="countdown">11.6.2026</div>
+      </div>
     </div>
 
     <div class="top-actions">
-      <a class="btn-rules" href="#rules" onclick="showRules();return false;">📘 תקנון התחרות</a>
+      <a class="btn-rules" href="#rules" onclick="showRules();return false;">📘 מעבר לתקנון התחרות</a>
     </div>
 
     <div class="prize-banner">
-      <div class="section-label">🏆 פרסים</div>
+      <h2>🏆 פרסים</h2>
       <div class="prize-rows">
         <div class="prize-row">
           <span class="icon">🥇</span>
-          <div class="txt">מקום ראשון – זוכה בכל הקופה!
-            <small>הניחוש עם הניקוד הגבוה ביותר לפי התקנון</small>
+          <div class="txt">
+            מקום ראשון – זוכה כמעט בכל הקופה!
+            <small>מנחש נכון את ארבעת המקומות הראשונים, או הכי קרוב לזה</small>
           </div>
         </div>
         <div class="prize-row">
           <span class="icon">🥈</span>
-          <div class="txt">מקום שני – החזר דמי השתתפות
-            <small>50₪ בחזרה לכיס</small>
+          <div class="txt">
+            מקום שני – מקבל את הכסף בחזרה
+            <small>50₪ בחזרה לכיס, כדי שיוכל להמר שוב בעתיד ולטעות בכבוד</small>
           </div>
         </div>
         <div class="prize-row">
@@ -148,95 +721,583 @@ td.nm{color:var(--muted);font-weight:700;font-size:.79rem}
 
     <div class="paybox-wrap">
       <a class="btn-paybox" href="https://links.payboxapp.com/T9RLp1tpz3b" target="_blank" rel="noopener">
-        <span class="badge">PAY</span>
-        תשלום דמי השתתפות – 50₪
+        <span class="paybox-icon">PAY</span>
+        לתשלום דמי השתתפות – 50₪
       </a>
       <p class="paybox-note">⚡ תשלום מאובטח דרך Paybox • שלם ואז מלא ניחוש</p>
     </div>
 
-    <div class="form-card">
+    <!-- ── FORM ── -->
+    <div class="form-card" id="formCard">
+      <div class="expired-badge">⛔ הסתיים</div>
       <div class="form-card-title">✏️ הדירוג שלי</div>
-      <div class="place-row"><div class="medal">🥇</div><div class="place-meta"><strong>מקום 1</strong><span>אלוף העולם</span></div><input class="country-input" id="c1" type="text" placeholder="שם המדינה" maxlength="30"/></div>
-      <div class="place-row"><div class="medal">🥈</div><div class="place-meta"><strong>מקום 2</strong><span>סגן אלוף</span></div><input class="country-input" id="c2" type="text" placeholder="שם המדינה" maxlength="30"/></div>
-      <div class="place-row"><div class="medal">🥉</div><div class="place-meta"><strong>מקום 3</strong><span>מקום שלישי</span></div><input class="country-input" id="c3" type="text" placeholder="שם המדינה" maxlength="30"/></div>
-      <div class="place-row"><div class="medal">⚽</div><div class="place-meta"><strong>מקום 4</strong><span>חצי גמר</span></div><input class="country-input" id="c4" type="text" placeholder="שם המדינה" maxlength="30"/></div>
+
+      <div class="place-row">
+        <div class="medal-icon">🥇</div>
+        <div class="place-meta">
+          <strong style="color:#117fbd">מקום 1</strong>
+          <span>אלוף העולם</span>
+        </div>
+        <input class="country-input" id="c1" type="text" placeholder="שם המדינה" maxlength="30"
+               oninput="validateDupes()" autocomplete="off"/>
+      </div>
+
+      <div class="place-row">
+        <div class="medal-icon">🥈</div>
+        <div class="place-meta">
+          <strong style="color:#4498c6">מקום 2</strong>
+          <span>סגן אלוף</span>
+        </div>
+        <input class="country-input" id="c2" type="text" placeholder="שם המדינה" maxlength="30"
+               oninput="validateDupes()" autocomplete="off"/>
+      </div>
+
+      <div class="place-row">
+        <div class="medal-icon">🥉</div>
+        <div class="place-meta">
+          <strong style="color:#5aabc9">מקום 3</strong>
+          <span>מקום שלישי</span>
+        </div>
+        <input class="country-input" id="c3" type="text" placeholder="שם המדינה" maxlength="30"
+               oninput="validateDupes()" autocomplete="off"/>
+      </div>
+
+      <div class="place-row">
+        <div class="medal-icon">⚽</div>
+        <div class="place-meta">
+          <strong style="color:#1565c0">מקום 4</strong>
+          <span>חצי גמר</span>
+        </div>
+        <input class="country-input" id="c4" type="text" placeholder="שם המדינה" maxlength="30"
+               oninput="validateDupes()" autocomplete="off"/>
+      </div>
+
       <div class="divider">✦ פרטי המנחש ✦</div>
-      <div class="name-row"><label>👤 שמך:</label><input class="name-input" id="guesser" type="text" placeholder="כתוב את שמך כאן" maxlength="30"/></div>
-      <button class="btn-submit" onclick="submitPick()">⚽ שלח ניחוש!</button>
+
+      <div class="name-row">
+        <label>👤 שמך:</label>
+        <input class="name-input" id="guesser" type="text" placeholder="כתוב את שמך כאן" maxlength="30"/>
+      </div>
+
+      <button class="btn-submit" id="btnSubmit" onclick="submitPick()">⚽ שלח ניחוש!</button>
     </div>
 
+    <!-- ── CONFIRMATION ── -->
+    <div class="confirm-card" id="confirmCard">
+      <div class="check-icon">✅</div>
+      <h3 id="confirmName">תודה! הניחוש שלך נשלח 🎉</h3>
+      <p>הניחוש נקלט בהצלחה. תוצאות יפורסמו בסיום הטורניר.</p>
+      <div class="pick-summary" id="confirmChips"></div>
+    </div>
+
+    <!-- ── LOCAL HISTORY ── -->
     <div id="summary">
-      <div class="summary-title">📋 טבלת ניחושים</div>
+      <div class="summary-title">📋 הניחוש האחרון מהמכשיר הזה</div>
+
       <div class="table-wrap">
         <table>
-          <thead><tr><th>🥇 מקום 1</th><th>🥈 מקום 2</th><th>🥉 מקום 3</th><th>⚽ מקום 4</th><th>👤 מנחש</th></tr></thead>
+          <thead>
+            <tr>
+              <th>🥇 מקום 1</th>
+              <th>🥈 מקום 2</th>
+              <th>🥉 מקום 3</th>
+              <th>⚽ מקום 4</th>
+              <th>👤 מנחש</th>
+            </tr>
+          </thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
+
       <div class="action-row">
-        <button class="btn-share" onclick="shareLink()">🔗 שתף לחברים</button>
-        <button class="btn-reset" onclick="resetAll()">🗑️ נקה הכל</button>
+        <button class="btn-share" onclick="shareLink()">🔗 שתף קישור לחברים</button>
+        <button class="btn-reset" onclick="resetLocal()">🗑️ נקה תצוגה מקומית</button>
       </div>
     </div>
+
   </section>
 
+  <!-- ═══════════════ RULES PAGE ═══════════════ -->
   <section id="rulesPage" class="page rules-page hidden">
+
     <div class="rules-hero">
       <h1>תקנון תחרות ניחוש ארבעת המקומות הראשונים</h1>
-      <p>כיצד מנחשים, כיצד מחשבים נקודות, וכיצד נקבע הזוכה.</p>
+      <p>התקנון מסביר איך מנחשים, איך מקבלים נקודות, ואיך נקבע הזוכה במקרה של שוויון.</p>
     </div>
-    <div class="rules-card"><h2>1. כללי</h2><p>המשתתפים ינחשו את ארבע הנבחרות שיסיימו בארבעת המקומות הראשונים בטורניר, כולל דירוגן הסופי.</p></div>
+
+    <div class="rules-card">
+      <h2>1. כללי</h2>
+      <p>המשתתפים בתחרות יתבקשו לנחש את ארבע הנבחרות שיסיימו בארבעת המקומות הראשונים בטורניר, כולל דירוגן הסופי.</p>
+      <p>הזוכה בתחרות ייקבע בהתאם למודל הניקוד המפורט בתקנון זה.</p>
+    </div>
+
     <div class="rules-card">
       <h2>2. שיטת הניקוד</h2>
-      <div class="score-grid">
-        <div class="score-box"><strong>בול במקום</strong><span class="pts">10 נקודות</span><p>ניחוש נכון של הנבחרת והמיקום המדויק.</p><span class="example">ברזיל מקום 2, ברזיל הגיעה ל-2 ✓</span></div>
-        <div class="score-box"><strong>פגיעה חלקית</strong><span class="pts">5 נקודות</span><p>נבחרת שהגיעה לטופ-4 אך במיקום אחר.</p><span class="example">צרפת מקום 1, בפועל הגיעה ל-2</span></div>
+      <p>כל משתתף יקבל ניקוד בהתאם לרמת הדיוק של הניחוש שלו:</p>
+
+      <div class="score-box">
+        <strong>בול במקום</strong>
+        <span class="points">10 נקודות</span>
+        <p>יינתנו עבור ניחוש נכון של הנבחרת והמיקום המדויק שלה.</p>
+        <span class="example">דוגמה: משתתף שניחש כי ברזיל תסיים במקום השני, וברזיל אכן סיימה במקום השני, יקבל 10 נקודות.</span>
       </div>
-      <p style="margin-top:.75rem;font-size:.85rem;color:var(--muted)">לא יינתן ניקוד עבור נבחרת שלא סיימה בארבעת המקומות.</p>
+
+      <div class="score-box">
+        <strong>פגיעה חלקית</strong>
+        <span class="points">5 נקודות</span>
+        <p>יינתנו עבור ניחוש נכון של נבחרת שהגיעה לארבעת המקומות הראשונים, אך במיקום שונה מזה שנחזה.</p>
+        <span class="example">דוגמה: משתתף שניחש כי צרפת תסיים במקום הראשון, אך בפועל סיימה במקום השני, יקבל 5 נקודות.</span>
+      </div>
+
+      <p style="margin-top:.7rem">לא יינתן ניקוד עבור נבחרת שלא סיימה בארבעת המקומות הראשונים.</p>
     </div>
-    <div class="rules-card"><h2>3. קביעת הזוכה</h2><p>הזוכה יהיה המשתתף עם מספר הנקודות הגבוה ביותר.</p></div>
+
+    <div class="rules-card">
+      <h2>3. קביעת הזוכה</h2>
+      <p>הזוכה בתחרות יהיה המשתתף שיצבור את מספר הנקודות הגבוה ביותר בהתאם למודל הניקוד.</p>
+    </div>
+
     <div class="rules-card">
       <h2>4. שוברי שוויון</h2>
+      <p>במקרה שבו לשני משתתפים או יותר יהיה ניקוד זהה, ההכרעה תתבצע לפי סדר העדיפות הבא:</p>
       <ol>
-        <li>מי שניחש נכון את זהות האלופה (מקום 1)</li>
-        <li>מספר הפגיעות המדויקות ("בול במקום") הגבוה ביותר</li>
-        <li>מי שניחש נכון את שתי הפיינליסטיות (מקומות 1 ו-2), ללא חשיבות לסדר</li>
+        <li>המשתתף שניחש נכון את זהות האלופה, כלומר מקום ראשון.</li>
+        <li>המשתתף שצבר את מספר הפגיעות המדויקות הגבוה ביותר — "בול במקום", 10 נקודות.</li>
+        <li>המשתתף שניחש נכון את זהות שתי הפיינליסטיות, מקומות 1 ו־2, ללא חשיבות לסדר.</li>
       </ol>
-      <p style="margin-top:.7rem">במקרה של שוויון מלא – הגרלה או חלוקת הפרס שווה בשווה.</p>
+      <p style="margin-top:.7rem">
+        במקרה של שוויון מלא גם לאחר כל שלבי שוברי השוויון, רשאים מארגני התחרות להכריע בין המשתתפים באמצעות הגרלה או באמצעות חלוקת הפרס באופן שווה בין הזוכים.
+      </p>
     </div>
+
     <button class="btn-back" onclick="showHome()">⬅ חזרה לעמוד הניחוש</button>
+
   </section>
+
 </main>
+
 <script>
-var KEY='massilot2026',ENTRY_FEE=50,DEADLINE=new Date('2026-06-10T23:59:59');
-var CONF=['#3aa3d6','#c0e3f5','#8dcbe8','#1a7aab','#c9a227','#f0d060'];
-function getPicks(){try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return[];}}
-function savePicks(a){localStorage.setItem(KEY,JSON.stringify(a));}
-function updateStats(){var n=getPicks().length;document.getElementById('stat-players').textContent=n;document.getElementById('stat-pot').textContent=(n*ENTRY_FEE).toLocaleString('he-IL')+'₪';}
-function updateCountdown(){var diff=DEADLINE-new Date(),el=document.getElementById('countdown');if(diff<=0){el.textContent='הסתיים';return;}var d=Math.floor(diff/864e5),h=Math.floor((diff%864e5)/36e5),m=Math.floor((diff%36e5)/6e4);el.textContent=d>0?d+'י '+h+'ש\'':(h>0?h+'ש\' '+m+'ד\'':m+' דקות');}
-function submitPick(){
-  if(new Date()>DEADLINE){showToast('⛔ זמן הניחושים הסתיים ב-10.6.2026');return;}
-  var c=[1,2,3,4].map(function(i){return document.getElementById('c'+i).value.trim();});
-  var name=document.getElementById('guesser').value.trim();
-  if(c.some(function(x){return!x;})){showToast('אנא מלא את כל 4 המקומות 🌍');return;}
-  if(!name){showToast('אנא כתוב את שמך 👤');return;}
-  if(new Set(c.map(function(s){return s.replace(/\s+/g,' ').toLowerCase();})).size<4){showToast('אי אפשר לבחור אותה נבחרת פעמיים ⚽');return;}
-  var picks=getPicks();picks.push({name:name,countries:c});savePicks(picks);
-  [1,2,3,4].forEach(function(i){document.getElementById('c'+i).value='';});
-  document.getElementById('guesser').value='';
-  launchConfetti();showToast('תודה '+name+'! הניחוש שלך נרשם 🎉');updateStats();renderTable();
+/* ═══════════ CONFIG ═══════════ */
+var KEY = 'massilot2026_local';
+var ENTRY_FEE = 50;
+
+// Google Forms endpoint — update if form changes
+var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdPJNZpgpypxSnYASzmfBbi1q0_2nZ_4bz-pFZlQPNDf0HFyQ/formResponse';
+
+// Apps Script web app that returns { players: N, pot: N }
+var STATS_URL = 'https://script.google.com/macros/s/AKfycbxcr6d7Miq5JBvAtMAEaHn0Yo0FP1if1EQvGOaytaM7ELPCrdDQGHNC2iHcQNv7Hcdv/exec';
+
+// Google Form entry IDs (must match your actual form field names)
+var ENTRY_C1   = 'entry.2032410557';
+var ENTRY_C2   = 'entry.877923770';
+var ENTRY_C3   = 'entry.1758586108';
+var ENTRY_C4   = 'entry.527232011';
+var ENTRY_NAME = 'entry.344835533';
+
+var DEADLINE = new Date('2026-06-11T22:00:00');
+
+var CONF = ['#42a5f5','#b8e3fb','#64bff4','#8ed8ff','#ffffff','#2d9cdb','#90caf9','#dff4ff'];
+
+/* ═══════════ LOCAL STORAGE ═══════════ */
+function getLocalPicks() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+  catch(e) { return []; }
 }
-function renderTable(){var picks=getPicks(),tbody=document.getElementById('tbody'),summary=document.getElementById('summary');if(!picks.length){summary.classList.remove('visible');return;}summary.classList.add('visible');tbody.innerHTML=picks.map(function(p){return'<tr>'+p.countries.map(function(c,i){return'<td class="c'+(i+1)+'">'+esc(c)+'</td>';}).join('')+'<td class="nm">'+esc(p.name)+'</td></tr>';}).join('');}
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function resetAll(){if(!confirm('למחוק את כל הניחושים?'))return;localStorage.removeItem(KEY);updateStats();renderTable();}
-function shareLink(){var url=location.href.split('#')[0];if(navigator.share){navigator.share({title:'מסילות 2026 – ניחוש מונדיאל',url:url});}else{navigator.clipboard.writeText(url).then(function(){showToast('🔗 הקישור הועתק!');}).catch(function(){showToast('העתק את הקישור מסרגל הכתובות');});}}
-function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},3000);}
-function launchConfetti(){var el=document.getElementById('celebrate');el.innerHTML='';for(var i=0;i<70;i++){var p=document.createElement('div');p.className='cp';p.style.cssText='left:'+(Math.random()*100)+'%;background:'+CONF[Math.floor(Math.random()*CONF.length)]+';animation-delay:'+(Math.random()*.9)+'s;animation-duration:'+(1.4+Math.random()*.9)+'s;border-radius:'+(Math.random()>.5?'50%':'2px')+';width:'+(7+Math.random()*6)+'px;height:'+(7+Math.random()*6)+'px;';el.appendChild(p);}el.classList.add('show');setTimeout(function(){el.classList.remove('show');},3000);}
-function showRules(){document.getElementById('homePage').classList.add('hidden');document.getElementById('rulesPage').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});history.pushState(null,'','#rules');}
-function showHome(){document.getElementById('rulesPage').classList.add('hidden');document.getElementById('homePage').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});history.pushState(null,'','#home');}
-window.addEventListener('popstate',function(){var r=location.hash==='#rules';document.getElementById('homePage').classList.toggle('hidden',r);document.getElementById('rulesPage').classList.toggle('hidden',!r);});
-if(location.hash==='#rules'){document.getElementById('homePage').classList.add('hidden');document.getElementById('rulesPage').classList.remove('hidden');}
-updateStats();updateCountdown();setInterval(updateCountdown,30000);renderTable();
+
+function saveLocalPicks(a) {
+  localStorage.setItem(KEY, JSON.stringify(a));
+}
+
+/* ═══════════ STATS (with retry + fallback) ═══════════ */
+var _prevPlayers = null;
+var _prevPot = null;
+var _statsRetries = 0;
+var MAX_RETRIES = 3;
+
+function setStatusDot(state) {
+  var dot  = document.getElementById('statusDot');
+  var text = document.getElementById('statusText');
+  dot.className = 'status-dot ' + state;
+  if (state === 'loading') {
+    text.textContent = 'טוען נתונים...';
+  } else if (state === 'error') {
+    text.textContent = 'שגיאה בטעינת נתונים · נסה שוב';
+  } else {
+    text.textContent = 'נתונים מעודכנים ✓';
+    // fade out after 3s
+    setTimeout(function() {
+      text.textContent = '';
+      dot.style.display = 'none';
+    }, 3000);
+  }
+}
+
+function flashStat(boxId) {
+  var box = document.getElementById(boxId);
+  box.classList.remove('updated');
+  void box.offsetWidth; // reflow
+  box.classList.add('updated');
+}
+
+function updateStats(isRetry) {
+  if (!isRetry) {
+    _statsRetries = 0;
+    setStatusDot('loading');
+  }
+
+  ['boxPlayers','boxPot'].forEach(function(id) {
+    document.getElementById(id).classList.add('loading');
+  });
+
+  // Abort-safe fetch with timeout
+  var ctrl = window.AbortController ? new AbortController() : null;
+  var tid = ctrl ? setTimeout(function(){ ctrl.abort(); }, 8000) : null;
+  var opts = ctrl ? { signal: ctrl.signal } : {};
+
+  fetch(STATS_URL, opts)
+    .then(function(res) {
+      clearTimeout(tid);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      var players = Number(data.players) || 0;
+      var pot     = Number(data.pot)     || 0;
+
+      ['boxPlayers','boxPot'].forEach(function(id) {
+        document.getElementById(id).classList.remove('loading');
+      });
+
+      // flash only if value changed
+      if (_prevPlayers !== players) {
+        document.getElementById('stat-players').textContent = players;
+        if (_prevPlayers !== null) flashStat('boxPlayers');
+        _prevPlayers = players;
+      }
+      if (_prevPot !== pot) {
+        document.getElementById('stat-pot').textContent = pot.toLocaleString('he-IL') + '₪';
+        if (_prevPot !== null) flashStat('boxPot');
+        _prevPot = pot;
+      }
+
+      setStatusDot('ok');
+      _statsRetries = 0;
+    })
+    .catch(function(err) {
+      clearTimeout(tid);
+      _statsRetries++;
+
+      if (_statsRetries < MAX_RETRIES) {
+        // exponential back-off: 2s, 4s, 8s
+        setTimeout(function() { updateStats(true); }, Math.pow(2, _statsRetries) * 1000);
+        return;
+      }
+
+      // Fallback: count from localStorage
+      console.warn('Stats fetch failed, using local fallback:', err);
+      var local = getLocalPicks();
+      var n = local.length;
+
+      ['boxPlayers','boxPot'].forEach(function(id) {
+        document.getElementById(id).classList.remove('loading');
+      });
+
+      document.getElementById('stat-players').textContent = n + '*';
+      document.getElementById('stat-pot').textContent = (n * ENTRY_FEE).toLocaleString('he-IL') + '₪*';
+      setStatusDot('error');
+    });
+}
+
+/* ═══════════ COUNTDOWN ═══════════ */
+function updateCountdown() {
+  var now  = new Date();
+  var diff = DEADLINE - now;
+  var el   = document.getElementById('countdown');
+
+  if (diff <= 0) {
+    el.textContent = 'הסתיים';
+    // lock the form
+    document.getElementById('formCard').classList.add('expired');
+    return;
+  }
+
+  var d = Math.floor(diff / 864e5);
+  var h = Math.floor((diff % 864e5) / 36e5);
+  var m = Math.floor((diff % 36e5) / 6e4);
+
+  if (d > 0) {
+    el.textContent = d + 'י ' + h + 'ש׳';
+  } else if (h > 0) {
+    el.textContent = h + 'ש׳ ' + m + 'ד׳';
+  } else {
+    el.textContent = m + ' דקות';
+  }
+}
+
+function isDeadlinePassed() {
+  return new Date() > DEADLINE;
+}
+
+/* ═══════════ VALIDATION ═══════════ */
+function normalizeName(s) {
+  return s.trim().replace(/\s+/g,' ').toLowerCase();
+}
+
+// live dupe-checking: highlight duplicates in red, unique in green
+function validateDupes() {
+  var ids = ['c1','c2','c3','c4'];
+  var vals = ids.map(function(id) {
+    return normalizeName(document.getElementById(id).value);
+  });
+
+  ids.forEach(function(id, i) {
+    var el = document.getElementById(id);
+    var v  = vals[i];
+    if (!v) {
+      el.classList.remove('valid','invalid');
+      return;
+    }
+    var dupeFound = vals.some(function(other, j) { return j !== i && other === v; });
+    el.classList.toggle('valid',   !dupeFound);
+    el.classList.toggle('invalid',  dupeFound);
+  });
+}
+
+/* ═══════════ SUBMIT ═══════════ */
+function submitPick() {
+  if (isDeadlinePassed()) {
+    showToast('⛔ זמן הניחושים הסתיים');
+    return;
+  }
+
+  var countries = [
+    document.getElementById('c1').value.trim(),
+    document.getElementById('c2').value.trim(),
+    document.getElementById('c3').value.trim(),
+    document.getElementById('c4').value.trim()
+  ];
+
+  var name = document.getElementById('guesser').value.trim();
+
+  if (countries.some(function(c) { return !c; })) {
+    showToast('אנא מלא את כל 4 המקומות 🌍');
+    return;
+  }
+
+  if (!name) {
+    showToast('אנא כתוב את שמך 👤');
+    return;
+  }
+
+  var normalized = countries.map(normalizeName);
+  var unique = new Set(normalized);
+  if (unique.size < 4) {
+    showToast('אי אפשר לבחור אותה נבחרת פעמיים ⚽');
+    return;
+  }
+
+  // disable button & show spinner
+  var btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.classList.add('sending');
+  btn.textContent = '⏳ שולח...';
+
+  var data = new FormData();
+  data.append(ENTRY_C1,   countries[0]);
+  data.append(ENTRY_C2,   countries[1]);
+  data.append(ENTRY_C3,   countries[2]);
+  data.append(ENTRY_C4,   countries[3]);
+  data.append(ENTRY_NAME, name);
+
+  fetch(FORM_URL, { method:'POST', mode:'no-cors', body:data })
+    .then(function() {
+      onSuccess(name, countries);
+    })
+    .catch(function(err) {
+      console.error('Form submit error:', err);
+      // no-cors requests always resolve even on network error
+      // but if we get here something is very wrong
+      btn.disabled = false;
+      btn.classList.remove('sending');
+      btn.textContent = '⚽ שלח ניחוש!';
+      showToast('הייתה בעיה בשליחה. נסה שוב 🔁');
+    });
+}
+
+function onSuccess(name, countries) {
+  // save to local storage
+  var local = getLocalPicks();
+  local.unshift({ name:name, countries:countries });
+  saveLocalPicks(local);
+
+  // clear inputs
+  ['c1','c2','c3','c4'].forEach(function(id) {
+    var el = document.getElementById(id);
+    el.value = '';
+    el.classList.remove('valid','invalid');
+  });
+  document.getElementById('guesser').value = '';
+
+  // restore button
+  var btn = document.getElementById('btnSubmit');
+  btn.disabled = false;
+  btn.classList.remove('sending');
+  btn.textContent = '⚽ שלח ניחוש!';
+
+  // show confirmation card
+  showConfirmCard(name, countries);
+
+  launchConfetti();
+
+  renderTable();
+
+  // refresh stats after short delay (Google Sheets takes a moment)
+  setTimeout(updateStats, 2000);
+  setTimeout(updateStats, 5000);
+}
+
+/* ═══════════ CONFIRM CARD ═══════════ */
+var MEDALS = ['🥇','🥈','🥉','⚽'];
+
+function showConfirmCard(name, countries) {
+  var card = document.getElementById('confirmCard');
+  document.getElementById('confirmName').textContent = 'תודה ' + name + '! הניחוש שלך נשלח 🎉';
+
+  var chips = document.getElementById('confirmChips');
+  chips.innerHTML = countries.map(function(c, i) {
+    return '<div class="pick-chip">' + MEDALS[i] + ' ' + esc(c) + '</div>';
+  }).join('');
+
+  card.classList.add('visible');
+  card.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+/* ═══════════ TABLE ═══════════ */
+function renderTable() {
+  var picks  = getLocalPicks();
+  var tbody  = document.getElementById('tbody');
+  var summary = document.getElementById('summary');
+
+  if (!picks.length) {
+    summary.classList.remove('visible');
+    return;
+  }
+
+  summary.classList.add('visible');
+
+  tbody.innerHTML = picks.map(function(p, idx) {
+    var newRow = idx === 0 ? ' class="new-row"' : '';
+    return '<tr' + newRow + '>' +
+      p.countries.map(function(c, i) {
+        return '<td class="c' + (i+1) + '">' + esc(c) + '</td>';
+      }).join('') +
+      '<td class="nm">' + esc(p.name) + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+/* ═══════════ HELPERS ═══════════ */
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;');
+}
+
+function resetLocal() {
+  if (!confirm('לנקות רק את התצוגה המקומית במכשיר הזה?\nהנתונים בגוגל שיטס לא יימחקו.')) return;
+  localStorage.removeItem(KEY);
+  document.getElementById('confirmCard').classList.remove('visible');
+  renderTable();
+  updateStats();
+}
+
+function shareLink() {
+  var url = window.location.href.split('#')[0];
+  if (navigator.share) {
+    navigator.share({ title:'מסילות 2026 – ניחוש מונדיאל', url:url });
+  } else {
+    navigator.clipboard.writeText(url).then(function() {
+      showToast('🔗 הקישור הועתק! שלח לחברים');
+    }).catch(function() {
+      showToast('העתק את הקישור מסרגל הכתובות');
+    });
+  }
+}
+
+/* ═══════════ TOAST ═══════════ */
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.classList.remove('show'); }, 3200);
+}
+
+/* ═══════════ CONFETTI ═══════════ */
+function launchConfetti() {
+  var el = document.getElementById('celebrate');
+  el.innerHTML = '';
+  for (var i = 0; i < 90; i++) {
+    var p = document.createElement('div');
+    p.className = 'cp';
+    p.style.cssText =
+      'left:' + (Math.random()*100) + '%;' +
+      'top:-10px;' +
+      'background:' + CONF[Math.floor(Math.random()*CONF.length)] + ';' +
+      'animation-delay:' + (Math.random()*1) + 's;' +
+      'animation-duration:' + (1.5+Math.random()*1) + 's;' +
+      'border-radius:' + (Math.random()>.5 ? '50%' : '2px') + ';' +
+      'width:' + (7+Math.random()*7) + 'px;' +
+      'height:' + (7+Math.random()*7) + 'px;';
+    el.appendChild(p);
+  }
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, 3200);
+}
+
+/* ═══════════ ROUTING ═══════════ */
+function showRules() {
+  document.getElementById('homePage').classList.add('hidden');
+  document.getElementById('rulesPage').classList.remove('hidden');
+  window.scrollTo({ top:0, behavior:'smooth' });
+  if (location.hash !== '#rules') history.pushState(null,'','#rules');
+}
+
+function showHome() {
+  document.getElementById('rulesPage').classList.add('hidden');
+  document.getElementById('homePage').classList.remove('hidden');
+  window.scrollTo({ top:0, behavior:'smooth' });
+  if (location.hash !== '#home') history.pushState(null,'','#home');
+}
+
+window.addEventListener('popstate', function() {
+  if (location.hash === '#rules') {
+    document.getElementById('homePage').classList.add('hidden');
+    document.getElementById('rulesPage').classList.remove('hidden');
+  } else {
+    document.getElementById('rulesPage').classList.add('hidden');
+    document.getElementById('homePage').classList.remove('hidden');
+  }
+});
+
+/* ═══════════ INIT ═══════════ */
+if (location.hash === '#rules') {
+  document.getElementById('homePage').classList.add('hidden');
+  document.getElementById('rulesPage').classList.remove('hidden');
+}
+
+// Check deadline on load — lock form if passed
+if (new Date() > DEADLINE) {
+  document.getElementById('formCard').classList.add('expired');
+}
+
+updateStats();
+updateCountdown();
+setInterval(updateCountdown, 30000);
+setInterval(updateStats, 60000);
+renderTable();
 </script>
+
 </body>
 </html>
